@@ -28,7 +28,7 @@ namespace Lecture1
 
                 var adsressWithOtherDiscount = GetAddressWithOtherDiscount(destinations);
 
-                amountOfInterest = GetUpdateAmountOfInterest(destinations, amountOfInterest, adsressWithOtherDiscount);
+                amountOfInterest = GetUpdatedAmountOfInterest(destinations, amountOfInterest, adsressWithOtherDiscount);
 
                 pricesDiscounts = GetPriceWithAllDiscount(pricesDiscounts, amountOfInterest);
 
@@ -59,7 +59,7 @@ namespace Lecture1
             return pricesDiscounts;
         }
 
-        private int[] GetUpdateAmountOfInterest(IEnumerable<string> destinations, int[] amountOfInterest, List<string> adsressWithOtherDiscount)
+        private int[] GetUpdatedAmountOfInterest(IEnumerable<string> destinations, int[] amountOfInterest, List<string> adsressWithOtherDiscount)
         {
             var count = 0;
 
@@ -92,9 +92,9 @@ namespace Lecture1
         {
             int numberOrderInEUR = 0;
 
-            foreach (var eur in currencies)
+            foreach (var currency in currencies)
             {
-                if (eur == "EUR")
+                if (currency == "EUR")
                 {
                     pricesDiscounts[numberOrderInEUR] *= 1.19m;
                 }
@@ -127,31 +127,31 @@ namespace Lecture1
         }
         private int[] GetAmountOfInterest(int length, IEnumerable<int> infantsIds, IEnumerable<int> childrenIds)
         {
-            int[] amountOfDiscounts = new int[length];
+            var discounts = new int[length];
 
-            for (int orderNumber = 0; orderNumber < length; orderNumber++)
+            for (int orderIndex = 0; orderIndex < length; orderIndex++)
             {
-                if (infantsIds.Contains(orderNumber))
+                if (infantsIds.Contains(orderIndex))
                 {
-                    amountOfDiscounts[orderNumber] += 50;
+                    discounts[orderIndex] += 50;
                 }
 
-                if (childrenIds.Contains(orderNumber))
+                if (childrenIds.Contains(orderIndex))
                 {
-                    amountOfDiscounts[orderNumber] += 25;
+                    discounts[orderIndex] += 25;
                 }
             }
 
-            return amountOfDiscounts;
+            return discounts;
         }
 
         private List<string> GetAddressWithOtherDiscount(IEnumerable<string> destinations)
         {
-            var addressWithDiscount = new List<string>();
+            var addressesWithDiscount = new List<string>();
 
-            var address = destinations.Select(a => a.Substring(0, a.IndexOf(","))).OrderBy(a => a).ToArray();
+            var addresses = destinations.Select(a => a.Substring(0, a.IndexOf(","))).OrderBy(a => a).ToArray();
 
-            var houseNumbers = address.Select(a => a.Substring(0, a.IndexOf(" "))).ToArray();
+            var houseNumbers = addresses.Select(a => a.Substring(0, a.IndexOf(" "))).ToArray();
 
             var streetNames = destinations.Select(a => a.Substring(a.IndexOf(" "), a.IndexOf(",") - 3)).ToArray();
 
@@ -163,11 +163,11 @@ namespace Lecture1
             {
                 if (houseNumb[number + 1] - houseNumb[number] == 1 && streetNames[number + 1] == streetNames[number])
                 {
-                    addressWithDiscount.Add(address[number + 1]);
+                    addressesWithDiscount.Add(addresses[number + 1]);
                 }
             }
 
-            return addressWithDiscount;
+            return addressesWithDiscount;
         }
         public decimal InvokePriceCalculatiion()
         {
