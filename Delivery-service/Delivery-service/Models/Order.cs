@@ -9,6 +9,7 @@ namespace Delivery_service.Models
     class Order
     {
         public int NumberOfOrder { get; set; }
+        public string Status { get; set; }
 
         public Customer _customer;
 

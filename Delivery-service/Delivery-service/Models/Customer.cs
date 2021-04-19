@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Delivery_service.Models
 {
-    class Customer
+    class Customer : User
     {
+        public DateTime BDay { get; set; }
+
+        void ToOrder() { }
+
+        void EditOrder() { }
+
+        void CancelOrder() { }
+
+        void RequestCall() { }
+
+        void Pay() { }
     }
 }
