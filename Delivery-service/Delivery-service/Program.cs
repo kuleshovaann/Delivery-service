@@ -19,27 +19,24 @@ namespace Lecture1
             if (Validate(destinations.Count(), clients.Count(), prices.Count(), currencies.Count()))
             {
                 var pricesDiscounts = prices.ToArray();
-
                 pricesDiscounts = GetPricesInUSD(pricesDiscounts, currencies);
-
                 pricesDiscounts = GetFirstDiscount(pricesDiscounts, destinations);
 
                 var amountOfInterest = GetAmountOfInterest(destinations.Count(), infantsIds, childrenIds);
-
                 var adsressWithOtherDiscount = GetAddressWithOtherDiscount(destinations);
 
                 amountOfInterest = GetUpdatedAmountOfInterest(destinations, amountOfInterest, adsressWithOtherDiscount);
-
                 pricesDiscounts = GetPriceWithAllDiscount(pricesDiscounts, amountOfInterest);
 
-                fullPrice = GetFullPrice(fullPrice, pricesDiscounts);
+                return GetFullPrice(pricesDiscounts);
             }
 
             return fullPrice;
         }
 
-        private decimal GetFullPrice(decimal fullPrice, decimal[] pricesDiscounts)
+        private decimal GetFullPrice(decimal[] pricesDiscounts)
         {
+            decimal fullPrice = 0;
             for (int order = 0; order < pricesDiscounts.Length; order++)
             {
                 fullPrice += pricesDiscounts[order];
