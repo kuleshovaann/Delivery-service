@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delivery_service.Models
+namespace Models
 {
-    class Customer : User
+    public class Customer : Creator
     {
-        public DateTime BDay { get; set; }
+        public DateTime Birthday { get; set; }
 
         void ToOrder() { }
 
