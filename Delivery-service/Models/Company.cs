@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class Company
+    public class Company : Creator
     {
+        public string BankAccount { get; set; }
+        public double Rating { get; set; }
+
+        public Menu[] _menu;
+        void AddMenu() { }
+        void CancelMenu() { }
     }
 }

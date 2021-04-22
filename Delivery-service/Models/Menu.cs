@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class Menu
+    public class Menu
     {
+        public string Name { get; set; }
+
+        public double Price { get; set; }
+
+        public string Сomposition { get; set; }
+
+        public double Weight { get; set; }
+
+        public int Calories { get; set; }
     }
 }
