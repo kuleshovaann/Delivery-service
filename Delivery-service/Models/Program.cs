@@ -1,94 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Models.Models;
+using Models.UI;
+
 
 namespace Models
 {
     class Program
     {
-        public static void Start()
-        {
-            Console.WriteLine("Сontinue as:");
-            Console.WriteLine("1 - company");
-            Console.WriteLine("2 - customer");
-        }
-        public static bool GetChoice()
-        {
-            var choice = int.Parse(Console.ReadLine());
-            if (choice == 1)
-                return true;
-            if (choice == 2)
-                return false;
-            return false;
-        }
-
-        public static void ToAddDish(Company company)
-        {
-            Console.WriteLine("Enter name:");
-            var name = Convert.ToString(Console.ReadLine());
-
-            Console.WriteLine("Enter price:");
-            var price = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Enter composition:");
-            var composition = Convert.ToString(Console.ReadLine());
-
-            Console.WriteLine("Enter weight in grams:");
-            var weight = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Enter calories:");
-            var calories = int.Parse(Console.ReadLine());
-
-            company.AddMenu(name, price, composition, weight, calories);
-        }
-
         static void Main(string[] args)
         {
-            var restraunt = new Company("Drink&Food");
-            restraunt.AddMenu("Coffee", 40.0, "Instant coffee", 90, 1);
-            restraunt.AddMenu("Black tea", 30.0, "Ceylon long leaf tea", 200, 0);
-            restraunt.AddMenu("Green tea", 30.0, "Green tea leaves", 200, 0);
+            var restraunt = new Company();
+            restraunt.Menu.Add(new Dish() { Name = "Coffee", Price = 40.0, Сomposition = "Instant coffee", Weight = 90, Calories = 1});
+            restraunt.Menu.Add(new Dish() { Name = "Black tea", Price = 30.0, Сomposition = "Ceylon long leaf tea", Weight = 200, Calories = 0});
+            restraunt.Menu.Add(new Dish() { Name = "Green tea", Price = 30.0, Сomposition = "Green tea leaves", Weight = 200, Calories = 0});
             Console.Clear();
 
-            while (true)
-            {
-                Start();
+            var customer = new Customer();
 
-                switch (int.Parse(Console.ReadLine()))
-                {
-                    case 1:
-                        Console.WriteLine("Do you want to add a dish? 1 - Yes, 2 - No");
-                        var choice = GetChoice();
-                        while (choice)
-                        {
-                            ToAddDish(restraunt);
-                            Console.WriteLine("Do you want to continue adding dishes? 1 - Yes, 2 - No");
-                            choice = GetChoice();
+            Starter.Start(restraunt, customer);
 
-                            Console.Clear();
-                        }
-                        break;
-                    case 2:
-                        Console.WriteLine("Do you want to choose a dish? 1 - Yes, 2 - No");
-                        var choiceCustomer = GetChoice();
-                        Order order = new Order();
-                        while (choiceCustomer)
-                        {
-                            restraunt.ShowMenu();
-
-                            Console.WriteLine("Select dish or drink number:");
-                            var index = int.Parse(Console.ReadLine());
-                            order.AddToOrder(restraunt, index);
-
-                            Console.WriteLine("Do you want to continue choosing dishes? 1 - Yes, 2 - No");
-                            choiceCustomer = GetChoice();
-                        }
-                        order.ShowOrder();
-                        break;
-                }
-            }
+            
         }
     }
 }
