@@ -1,11 +1,12 @@
 ﻿using Models.Models;
+using Models.Contracts;
 using System;
 
 namespace Models.Services
 {
     public class CompanyServices
     {
-        public static void AddDish(Company company)
+        public static void AddDish(ICompany company)
         {
             Console.WriteLine("Enter name:");
             var name = Convert.ToString(Console.ReadLine());
@@ -29,7 +30,7 @@ namespace Models.Services
             Console.ResetColor();
         }
 
-        public static void ShowMenu(Company company)
+        public static void ShowMenu(ICompany company)
         {
             var count = 1;
             foreach (var dish in company.Menu)

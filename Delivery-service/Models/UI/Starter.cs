@@ -1,13 +1,14 @@
 ﻿using Models.Models;
+using Models.Contracts;
 using Models.UI;
 using System;
 
 
 namespace Models.UI
 {
-    public class Starter
+    public class Starter : IStarter
     {
-        public static void Start(Company company, Customer customer)
+        public void Start(ICompany company, ICustomer customer)
         {
             while (true)
             {

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System;
+using Models.Contracts;
 
 namespace Models.Models
 {
-    public class Company 
+    public class Company : ICompany
     {
         public Company()
         {
@@ -11,6 +12,6 @@ namespace Models.Models
         }
         public string Name { get; set; }
 
-        public List<Dish> Menu;
+        public List<Dish> Menu { get; set; }
     }
 }

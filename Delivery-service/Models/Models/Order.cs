@@ -1,4 +1,5 @@
 ﻿using System;
+using Models.Contracts;
 using System.Collections.Generic;
 
 namespace Models.Models

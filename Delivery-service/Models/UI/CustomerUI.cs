@@ -1,12 +1,13 @@
 ﻿using System;
 using Models.Models;
 using Models.Services;
+using Models.Contracts;
 
 namespace Models.UI
 {
     class CustomerUI
     {
-        public static void СustomerActions(Company restraunt, Customer customer)
+        public static void СustomerActions(ICompany restraunt, ICustomer customer)
         {
             var order = new Order();
             int index;

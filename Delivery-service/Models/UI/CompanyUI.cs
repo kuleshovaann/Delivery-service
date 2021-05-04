@@ -1,12 +1,13 @@
 ﻿using System;
 using Models.Models;
 using Models.Services;
+using Models.Contracts;
 
 namespace Models.UI
 {
-    public class CompanyUI
+    public class CompanyUI 
     {
-        public static void СompanyActions(Company company)
+        public static void СompanyActions(ICompany company)
         {
             Console.WriteLine("1 - Adding a new dish");
             Console.WriteLine("2 - View menu");

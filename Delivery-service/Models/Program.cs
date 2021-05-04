@@ -16,10 +16,9 @@ namespace Models
             Console.Clear();
 
             var customer = new Customer();
+            var starter = new Starter();
 
-            Starter.Start(restraunt, customer);
-
-            
+            starter.Start(restraunt, customer);           
         }
     }
 }
