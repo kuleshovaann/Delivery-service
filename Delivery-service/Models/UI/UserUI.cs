@@ -1,0 +1,81 @@
+﻿using System;
+using Models.Contracts;
+using Models.Models;
+using Models.Services;
+
+namespace Models.UI
+{
+    public class UserUI
+    {
+        public static void StartUI()
+        {
+            Console.WriteLine("Сontinue as:");
+            Console.WriteLine("1 - company");
+            Console.WriteLine("2 - customer");
+        }
+
+        public static void AddDishUI(ICompany company)
+        {
+            Console.WriteLine("Enter name:");
+            var name = Convert.ToString(Console.ReadLine());
+
+            Console.WriteLine("Enter price:");
+            var price = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Enter composition:");
+            var composition = Convert.ToString(Console.ReadLine());
+
+            Console.WriteLine("Enter weight in grams:");
+            var weight = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Enter calories:");
+            var calories = int.Parse(Console.ReadLine());
+
+            CompanyServices.AddDish(company, name, price, composition, weight, calories);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Dish has been added to the menu");
+            Console.ResetColor();
+        }
+
+        public static void ShowMenu(ICompany company)
+        {
+            var count = 1;
+            foreach (var dish in company.Menu)
+            {
+                Console.WriteLine($"{count}");
+                Console.WriteLine($"Name: {dish.Name}");
+                Console.WriteLine($"Price: {dish.Price}");
+                Console.WriteLine($"Сomposition: {dish.Сomposition}");
+                Console.WriteLine($"Weight: {dish.Weight}");
+                Console.WriteLine($"Calories: {dish.Calories}");
+                count++;
+            }
+        }
+
+        public static void СompanyActionsUI(ICompany company)
+        {
+            Console.WriteLine("1 - Adding a new dish");
+            Console.WriteLine("2 - View menu");
+
+            CompanyServices.СompanyActions(company);
+        }
+
+        public static void СustomerActionsUI()
+        {
+            Console.WriteLine("Select dish or drink number or enter 0 for finish"); ;
+        }
+
+        public static void ShowFullPrice(IOrder order)
+        {
+            Console.WriteLine($"Order amount: {order.FullPrice}");
+        }
+
+        public static void GetVerificationOrder(ICompany company, int index)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{company.Menu[index - 1].Name} has been added to the order");
+            Console.ResetColor();
+        }
+    }
+}

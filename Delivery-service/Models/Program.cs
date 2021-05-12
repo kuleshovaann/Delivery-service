@@ -1,6 +1,6 @@
 ﻿using System;
 using Models.Models;
-using Models.UI;
+using Models.Services;
 
 
 namespace Models
@@ -16,7 +16,7 @@ namespace Models
             Console.Clear();
 
             var customer = new Customer();
-            var starter = new Starter();
+            var starter = new GeneralMethods();
 
             starter.Start(restraunt, customer);           
         }

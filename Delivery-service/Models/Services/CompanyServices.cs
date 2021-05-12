@@ -1,48 +1,35 @@
-﻿using Models.Models;
+﻿using System;
 using Models.Contracts;
-using System;
+using Models.UI;
+using Models.Models;
 
 namespace Models.Services
 {
     public class CompanyServices
     {
-        public static void AddDish(ICompany company)
+        public static void СompanyActions(ICompany company)
         {
-            Console.WriteLine("Enter name:");
-            var name = Convert.ToString(Console.ReadLine());
-
-            Console.WriteLine("Enter price:");
-            var price = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Enter composition:");
-            var composition = Convert.ToString(Console.ReadLine());
-
-            Console.WriteLine("Enter weight in grams:");
-            var weight = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Enter calories:");
-            var calories = int.Parse(Console.ReadLine());
-
-            company.Menu.Add(new Dish() { Name = name, Price = price, Сomposition = composition, Weight = weight, Calories = calories });
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Dish has been added to the menu");
-            Console.ResetColor();
+            switch (int.Parse(Console.ReadLine()))
+            {
+                case 1:
+                    UserUI.AddDishUI(company);
+                    break;
+                case 2:
+                    UserUI.ShowMenu(company);
+                    break;
+            }
         }
 
-        public static void ShowMenu(ICompany company)
+        public static void AddDish(ICompany company, string name, double price, string composition, double weight, int calories)
         {
-            var count = 1;
-            foreach (var dish in company.Menu)
-            {
-                Console.WriteLine($"{count}");
-                Console.WriteLine($"Name: {dish.Name}");
-                Console.WriteLine($"Price: {dish.Price}");
-                Console.WriteLine($"Сomposition: {dish.Сomposition}");
-                Console.WriteLine($"Weight: {dish.Weight}");
-                Console.WriteLine($"Calories: {dish.Calories}");
-                count++;
-            }
+            company.Menu.Add(new Dish()
+            { 
+                Name = name, 
+                Price = price, 
+                Сomposition = composition, 
+                Weight = weight, 
+                Calories = calories 
+            });
         }
     }
 }

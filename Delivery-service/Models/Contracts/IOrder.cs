@@ -1,15 +1,11 @@
 ﻿using System;
-using Models.Contracts;
+using Models.Models;
 using System.Collections.Generic;
 
-namespace Models.Models
+namespace Models.Contracts
 {
-    public class Order : IOrder
+    public interface IOrder
     {
-        public Order()
-        {
-            Titles = new List<Dish>();
-        }
         public Customer Customer { get; set; }
 
         public Company Company { get; set; }

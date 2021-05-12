@@ -1,19 +1,25 @@
 ﻿using System;
-using Models.Models;
-using Models.Services;
 using Models.Contracts;
+using Models.Models;
+using Models.UI;
+using Models.Database;
 
-namespace Models.UI
+namespace Models.Services
 {
-    class CustomerUI
+    public class CustomerServices
     {
         public static void СustomerActions(ICompany restraunt, ICustomer customer)
         {
+            UserUI.СustomerActionsUI();
+            UserUI.ShowMenu(restraunt);
+
+            CustomerServices.MakeOrder(restraunt, customer);
+        }
+
+        public static void MakeOrder(ICompany restraunt, ICustomer customer)
+        {
             var order = new Order();
             int index;
-
-            Console.WriteLine("Select dish or drink number or enter 0 for finish");
-            CompanyServices.ShowMenu(restraunt);
 
             index = int.Parse(Console.ReadLine());
 
@@ -25,7 +31,8 @@ namespace Models.UI
                 index = int.Parse(Console.ReadLine());
             }
 
-            Console.WriteLine($"Order amount: {order.FullPrice}");
+            var newOrder = new OrderBase(order);
+            UserUI.ShowFullPrice(order);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Models.Contracts
 {
     public interface ICompany
     {
-        public string Name { get; set; }
+        string Name { get; set; }
 
         List<Dish> Menu { get; set; }
     }

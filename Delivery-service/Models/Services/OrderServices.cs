@@ -1,6 +1,7 @@
 ﻿using System;
-using Models.Models;
 using Models.Contracts;
+using Models.Models;
+using Models.UI;
 
 namespace Models.Services
 {
@@ -21,9 +22,8 @@ namespace Models.Services
 
                 order.FullPrice += company.Menu[index - 1].Price;
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"{company.Menu[index - 1].Name} has been added to the order");
-                Console.ResetColor();
+                UserUI.GetVerificationOrder(company, index);
+
                 break;
             }
 
