@@ -6,12 +6,12 @@ namespace Models.Contracts
 {
     public interface IOrder
     {
-        public Customer Customer { get; set; }
+        Customer Customer { get; set; }
 
-        public Company Company { get; set; }
+        Company Company { get; set; }
 
-        public double FullPrice { get; set; }
+        double FullPrice { get; set; }
 
-        public List<Dish> Titles { get; set; }
+        List<Dish> Titles { get; set; }
     }
 }
