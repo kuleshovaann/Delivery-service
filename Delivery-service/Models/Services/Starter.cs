@@ -5,7 +5,7 @@ using Models.UI;
 
 namespace Models.Services
 {
-    public class GeneralMethods : IStarter
+    public class Starter : IStarter
     {
         public void Start(ICompany company, ICustomer customer)
         {
@@ -13,7 +13,7 @@ namespace Models.Services
             {
                 UserUI.StartUI();
 
-                GeneralMethods.GetChoice(company, customer);
+                Starter.GetChoice(company, customer);
             }
         }
 

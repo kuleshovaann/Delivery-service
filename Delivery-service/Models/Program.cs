@@ -16,7 +16,7 @@ namespace Models
             Console.Clear();
 
             var customer = new Customer();
-            var starter = new GeneralMethods();
+            var starter = new Starter();
 
             starter.Start(restraunt, customer);           
         }

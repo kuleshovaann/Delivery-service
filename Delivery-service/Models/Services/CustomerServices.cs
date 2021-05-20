@@ -31,7 +31,8 @@ namespace Models.Services
                 index = int.Parse(Console.ReadLine());
             }
 
-            var newOrder = new OrderBase(order);
+            var newOrder = new OrderDatabase();
+            OrderDatabase.AddTOOrderDataBase(newOrder, order);
             UserUI.ShowFullPrice(order);
         }
     }

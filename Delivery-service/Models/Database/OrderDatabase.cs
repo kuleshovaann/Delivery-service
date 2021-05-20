@@ -5,15 +5,18 @@ using Models.Models;
 
 namespace Models.Database
 {
-    public class OrderBase
+    public class OrderDatabase
     {
-        public OrderBase(IOrder order)
+        public OrderDatabase()
         {
             Orders = new List<Order>();
-            Orders.Add((Order)order);
         }
 
         public List<Order> Orders { get; set; }
 
+        public static void AddTOOrderDataBase(OrderDatabase database, IOrder order)
+        {
+            database.Orders.Add((Order)order);
+        }
     }
 }
