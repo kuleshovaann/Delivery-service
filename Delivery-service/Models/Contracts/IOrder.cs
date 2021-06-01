@@ -12,6 +12,6 @@ namespace Models.Contracts
 
         double FullPrice { get; set; }
 
-        List<Dish> Titles { get; set; }
+        List<Dish> Dishes { get; set; }
     }
 }

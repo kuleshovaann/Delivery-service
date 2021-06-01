@@ -32,7 +32,7 @@ namespace Models.Services
             }
 
             var newOrder = new OrderDatabase();
-            OrderDatabase.AddTOOrderDataBase(newOrder, order);
+            OrderDatabase.AddToOrderDataBase(newOrder, order);
             UserUI.ShowFullPrice(order);
         }
     }

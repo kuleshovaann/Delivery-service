@@ -8,10 +8,10 @@ namespace Models.Models
     {
         public Company()
         {
-            Menu = new List<Dish>();
+            Dishes = new List<Dish>();
         }
         public string Name { get; set; }
 
-        public List<Dish> Menu { get; set; }
+        public List<Dish> Dishes { get; set; }
     }
 }

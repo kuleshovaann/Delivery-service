@@ -8,6 +8,6 @@ namespace Models.Contracts
     {
         string Name { get; set; }
 
-        List<Dish> Menu { get; set; }
+        List<Dish> Dishes { get; set; }
     }
 }

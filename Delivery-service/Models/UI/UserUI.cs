@@ -41,7 +41,7 @@ namespace Models.UI
         public static void ShowMenu(ICompany company)
         {
             var count = 1;
-            foreach (var dish in company.Menu)
+            foreach (var dish in company.Dishes)
             {
                 Console.WriteLine($"{count}");
                 Console.WriteLine($"Name: {dish.Name}");
@@ -74,7 +74,7 @@ namespace Models.UI
         public static void GetVerificationOrder(ICompany company, int index)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{company.Menu[index - 1].Name} has been added to the order");
+            Console.WriteLine($"{company.Dishes[index - 1].Name} has been added to the order");
             Console.ResetColor();
         }
     }

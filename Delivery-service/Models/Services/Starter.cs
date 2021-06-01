@@ -2,7 +2,6 @@
 using Models.Contracts;
 using Models.UI;
 
-
 namespace Models.Services
 {
     public class Starter : IStarter

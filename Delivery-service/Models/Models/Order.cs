@@ -8,7 +8,7 @@ namespace Models.Models
     {
         public Order()
         {
-            Titles = new List<Dish>();
+            Dishes = new List<Dish>();
         }
         public Customer Customer { get; set; }
 
@@ -16,6 +16,6 @@ namespace Models.Models
 
         public double FullPrice { get; set; }
 
-        public List<Dish> Titles { get; set; }
+        public List<Dish> Dishes { get; set; }
     }
 }

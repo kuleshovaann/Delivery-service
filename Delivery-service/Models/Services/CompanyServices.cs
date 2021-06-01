@@ -22,7 +22,7 @@ namespace Models.Services
 
         public static void AddDish(ICompany company, string name, double price, string composition, double weight, int calories)
         {
-            company.Menu.Add(new Dish()
+            company.Dishes.Add(new Dish()
             { 
                 Name = name, 
                 Price = price, 
