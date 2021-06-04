@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DeliveryService.Models;
+using System;
 
-namespace Models.Contracts
+namespace DeliveryService.Contracts
 {
     public interface IStarter
     {
-        void Start(ICompany company, ICustomer customer);
+        void Start(Company company, Customer customer);
     }
 }

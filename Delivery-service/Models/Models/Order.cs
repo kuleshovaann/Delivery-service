@@ -1,10 +1,8 @@
-﻿using System;
-using Models.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Models.Models
+namespace DeliveryService.Models
 {
-    public class Order : IOrder
+    public class Order
     {
         public Order()
         {

@@ -1,12 +1,13 @@
 ﻿using System;
-using Models.Contracts;
-using Models.UI;
+using DeliveryService.Contracts;
+using DeliveryService.UI;
+using DeliveryService.Models;
 
-namespace Models.Services
+namespace DeliveryService.Services
 {
     public class Starter : IStarter
     {
-        public void Start(ICompany company, ICustomer customer)
+        public void Start(Company company, Customer customer)
         {
             while (true)
             {
@@ -16,7 +17,7 @@ namespace Models.Services
             }
         }
 
-        public static void GetChoice(ICompany company, ICustomer customer)
+        public static void GetChoice(Company company, Customer customer)
         {
             switch (int.Parse(Console.ReadLine()))
             {

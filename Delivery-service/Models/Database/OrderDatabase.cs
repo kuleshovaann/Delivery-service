@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Models.Models;
+using DeliveryService.Models;
 
-namespace Models.Database
+namespace DeliveryService.Database
 {
     public class OrderDatabase
     {

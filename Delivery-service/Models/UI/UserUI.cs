@@ -1,9 +1,9 @@
 ﻿using System;
-using Models.Contracts;
-using Models.Models;
-using Models.Services;
+using DeliveryService.Contracts;
+using DeliveryService.Models;
+using DeliveryService.Services;
 
-namespace Models.UI
+namespace DeliveryService.UI
 {
     public class UserUI
     {
@@ -14,7 +14,7 @@ namespace Models.UI
             Console.WriteLine("2 - customer");
         }
 
-        public static void AddDishUI(ICompany company)
+        public static void AddDishUI(Company company)
         {
             Console.WriteLine("Enter name:");
             var name = Convert.ToString(Console.ReadLine());
@@ -38,7 +38,7 @@ namespace Models.UI
             Console.ResetColor();
         }
 
-        public static void ShowMenu(ICompany company)
+        public static void ShowMenu(Company company)
         {
             var count = 1;
             foreach (var dish in company.Dishes)
@@ -53,12 +53,12 @@ namespace Models.UI
             }
         }
 
-        public static void СompanyActionsUI(ICompany company)
+        public static void СompanyActionsUI(Company company)
         {
             Console.WriteLine("1 - Adding a new dish");
             Console.WriteLine("2 - View menu");
 
-            CompanyServices.СompanyActions(company);
+            CompanyServices.CompanyActions(company);
         }
 
         public static void СustomerActionsUI()
@@ -66,12 +66,12 @@ namespace Models.UI
             Console.WriteLine("Select dish or drink number or enter 0 for finish"); ;
         }
 
-        public static void ShowFullPrice(IOrder order)
+        public static void ShowFullPrice(Order order)
         {
             Console.WriteLine($"Order amount: {order.FullPrice}");
         }
 
-        public static void GetVerificationOrder(ICompany company, int index)
+        public static void GetVerificationOrder(Company company, int index)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{company.Dishes[index - 1].Name} has been added to the order");

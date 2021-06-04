@@ -1,13 +1,13 @@
 ﻿using System;
-using Models.Contracts;
-using Models.UI;
-using Models.Models;
+using DeliveryService.UI;
+using DeliveryService.Models;
+using DeliveryService.Contracts;
 
-namespace Models.Services
+namespace DeliveryService.Services
 {
-    public class CompanyServices
+    public class CompanyServices : ICompanyServices
     {
-        public static void СompanyActions(ICompany company)
+        public static void CompanyActions(Company company)
         {
             switch (int.Parse(Console.ReadLine()))
             {
@@ -20,15 +20,15 @@ namespace Models.Services
             }
         }
 
-        public static void AddDish(ICompany company, string name, double price, string composition, double weight, int calories)
+        public static void AddDish(Company company, string name, double price, string composition, double weight, int calories)
         {
             company.Dishes.Add(new Dish()
-            { 
-                Name = name, 
-                Price = price, 
-                Сomposition = composition, 
-                Weight = weight, 
-                Calories = calories 
+            {
+                Name = name,
+                Price = price,
+                Сomposition = composition,
+                Weight = weight,
+                Calories = calories
             });
         }
     }

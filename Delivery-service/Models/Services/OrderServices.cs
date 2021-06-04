@@ -1,15 +1,15 @@
 ﻿using System;
-using Models.Contracts;
-using Models.Models;
-using Models.UI;
+using DeliveryService.Models;
+using DeliveryService.UI;
+using DeliveryService.Contracts;
 
-namespace Models.Services
+namespace DeliveryService.Services
 {
-    public class OrderServices
+    public class OrderServices : IOrderServices
     {
-        public static void AddToOrder(ICompany company, Order order, int index)
+        public static void AddToOrder(Company company, Order order, int index)
         {
-            while (index <= company.Dishes.Count)
+            if (index <= company.Dishes.Count)
             {
                 order.Dishes.Add(new Dish()
                 {
@@ -23,8 +23,6 @@ namespace Models.Services
                 order.FullPrice += company.Dishes[index - 1].Price;
 
                 UserUI.GetVerificationOrder(company, index);
-
-                break;
             }
         }
     }

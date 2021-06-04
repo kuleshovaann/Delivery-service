@@ -1,9 +1,8 @@
 ﻿using System;
-using Models.Contracts;
 
-namespace Models.Models
+namespace DeliveryService.Models
 {
-    public class Customer : ICustomer
+    public class Customer
     {
         public string Name { get; set; }
         public string[] PhoneNumbers { get; set; }

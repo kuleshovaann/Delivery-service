@@ -1,9 +1,9 @@
 ﻿using System;
-using Models.Models;
-using Models.Services;
+using DeliveryService.Models;
+using DeliveryService.Services;
 
 
-namespace Models
+namespace DeliveryService
 {
     class Program
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models.Models
+namespace DeliveryService.Models
 {
     public class Dish
     {

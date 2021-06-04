@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
-using System;
-using Models.Contracts;
 
-namespace Models.Models
+namespace DeliveryService.Models
 {
-    public class Company : ICompany
+    public class Company
     {
+        public string Name { get; set; }
+        public List<Dish> Dishes { get; set; }
         public Company()
         {
             Dishes = new List<Dish>();
         }
-        public string Name { get; set; }
-
-        public List<Dish> Dishes { get; set; }
     }
 }

@@ -1,27 +1,25 @@
 ﻿using System;
-using Models.Contracts;
-using Models.Models;
-using Models.UI;
-using Models.Database;
+using DeliveryService.Contracts;
+using DeliveryService.Models;
+using DeliveryService.UI;
+using DeliveryService.Database;
 
-namespace Models.Services
+namespace DeliveryService.Services
 {
-    public class CustomerServices
+    public class CustomerServices : ICustomerServices
     {
-        public static void СustomerActions(ICompany restraunt, ICustomer customer)
+        public static void СustomerActions(Company restraunt, Customer customer)
         {
             UserUI.СustomerActionsUI();
             UserUI.ShowMenu(restraunt);
 
-            CustomerServices.MakeOrder(restraunt, customer);
+            MakeOrder(restraunt, customer);
         }
 
-        public static void MakeOrder(ICompany restraunt, ICustomer customer)
+        public static void MakeOrder(Company restraunt, Customer customer)
         {
             var order = new Order();
-            int index;
-
-            index = int.Parse(Console.ReadLine());
+            int index = int.Parse(Console.ReadLine());
 
             while (index != 0)
             {
