@@ -77,5 +77,15 @@ namespace DeliveryService.UI
             Console.WriteLine($"{company.Dishes[index - 1].Name} has been added to the order");
             Console.ResetColor();
         }
+
+        public static void GetPhoneUI()
+        {
+            Console.WriteLine("Enter your phone in the format: +380(95)222 33 88 or +380952223388, or 0952223388, or 095 222 33 88.");
+        }
+
+        public static void GetAddressUI()
+        {
+            Console.WriteLine("Enter your address in the format: ");
+        }
     }
 }
