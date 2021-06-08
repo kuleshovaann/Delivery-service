@@ -21,7 +21,7 @@ namespace DeliveryService
             var orderServices = new OrderServices();
             var orderDatabase = new OrderDatabase();
             var customerServices = new CustomerServices(orderServices, orderDatabase);
-            var companyServices = new CompanyServices();
+            var companyServices = new CompanyServices(orderDatabase);
 
             var user = new UserUI(customerServices, companyServices);
             user.StartUI(company, customer);
