@@ -8,11 +8,13 @@ namespace DeliveryService.Services
     {
         private IOrderServices _orderServices;
         private IOrderDatabase _orderDatabase;
+        private ILogger _logger;
 
-        public CustomerServices(IOrderServices orderServices, IOrderDatabase orderDatabase)
+        public CustomerServices(IOrderServices orderServices, IOrderDatabase orderDatabase, ILogger logger)
         {
             _orderServices = orderServices;
             _orderDatabase = orderDatabase;
+            _logger = logger;
         }
 
         public Order MakeOrder(Company restraunt, Customer customer)
@@ -29,7 +31,9 @@ namespace DeliveryService.Services
             }
 
             _orderDatabase.Orders.Add(order);
-            return order;
+            _logger.CreateNewNote("New order has been created");
+
+            return order;           
         }
     }
 }

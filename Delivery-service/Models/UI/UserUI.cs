@@ -85,6 +85,7 @@ namespace DeliveryService.UI
         {
             Console.WriteLine("1 - Adding a new dish");
             Console.WriteLine("2 - View menu");
+            Console.WriteLine("3 - Remove a dish from the menu");
 
             var choice = int.TryParse(Console.ReadLine(), out int number);
             switch (number)
@@ -95,17 +96,28 @@ namespace DeliveryService.UI
                 case 2:
                     ShowMenu(company);
                     break;
+                case 3:
+                    DeleteDishUI(company);
+                    break;
                 default:
                     Console.WriteLine("Please, start again.");
                     break;
             }
         }
 
+        public void DeleteDishUI(Company company)
+        {
+            Console.WriteLine("Select dish number for remove:");
+            ShowMenu(company);
+
+            _companyServices.DeleteDish(company);
+        }
+
         public void СustomerActionsUI(Company restraunt, Customer customer)
         {
             Console.WriteLine("Select dish or drink number or enter 0 for finish");
             ShowMenu(restraunt);
-           
+
             var order = _customerServices.MakeOrder(restraunt, customer);
             ShowFullPrice(order);
         }
@@ -113,7 +125,7 @@ namespace DeliveryService.UI
         public void ShowFullPrice(Order order)
         {
             Console.WriteLine("Your order:");
-            foreach(Dish dish in order.Dishes)
+            foreach (Dish dish in order.Dishes)
             {
                 Console.WriteLine($"{dish.Name}");
             }
