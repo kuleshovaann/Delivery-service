@@ -30,7 +30,7 @@ namespace DeliveryService.Services
             }
 
             var newOrder = new OrderDatabase();
-            OrderDatabase.AddToOrderDataBase(newOrder, order);
+            newOrder.Orders.Add(order);
             UserUI.ShowFullPrice(order);
         }
     }

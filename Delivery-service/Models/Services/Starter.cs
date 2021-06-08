@@ -19,7 +19,8 @@ namespace DeliveryService.Services
 
         public static void GetChoice(Company company, Customer customer)
         {
-            switch (int.Parse(Console.ReadLine()))
+            var choice = int.TryParse(Console.ReadLine(), out int number);
+            switch (number)
             {
                 case 1:
                     UserUI.СompanyActionsUI(company);
@@ -27,6 +28,10 @@ namespace DeliveryService.Services
                 case 2:
                     CustomerServices.СustomerActions(company, customer);
                     break;
+                default:
+                    Console.WriteLine("Please, start again.");
+                    break;
+
             }
         }        
     }
