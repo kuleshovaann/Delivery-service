@@ -1,12 +1,9 @@
-﻿using System;
-using DeliveryService.Models;
+﻿using DeliveryService.Models;
 
 namespace DeliveryService.Contracts
 {
     public interface ICustomerServices
     {
-        void СustomerActions(Company restraunt, Customer customer) { }
-
-        void MakeOrder(Company restraunt, Customer customer) { }
+        Order MakeOrder(Company restraunt, Customer customer);
     }
 }

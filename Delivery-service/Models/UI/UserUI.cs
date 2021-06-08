@@ -1,20 +1,48 @@
 ﻿using System;
 using DeliveryService.Contracts;
 using DeliveryService.Models;
-using DeliveryService.Services;
 
 namespace DeliveryService.UI
 {
     public class UserUI
     {
-        public static void StartUI()
+        private ICustomerServices _customerServices;
+        private ICompanyServices _companyServices;
+
+        public UserUI(ICustomerServices customerServices,
+                      ICompanyServices companyServices)
         {
-            Console.WriteLine("Сontinue as:");
-            Console.WriteLine("1 - company");
-            Console.WriteLine("2 - customer");
+            _customerServices = customerServices;
+            _companyServices = companyServices;
         }
 
-        public static void AddDishUI(Company company)
+        public void StartUI(Company company, Customer customer)
+        {
+            while (true)
+            {
+                Console.WriteLine("Сontinue as:");
+                Console.WriteLine("1 - company");
+                Console.WriteLine("2 - customer");
+
+                var choice = int.TryParse(Console.ReadLine(), out int number);
+
+                switch (number)
+                {
+                    case 1:
+                        СompanyActionsUI(company);
+                        break;
+                    case 2:
+                        СustomerActionsUI(company, customer);
+                        break;
+                    default:
+                        Console.WriteLine("Please, start again.");
+                        break;
+                }
+                Console.WriteLine("----------------------");
+            }
+        }
+
+        public void AddDishUI(Company company)
         {
             Console.WriteLine("Enter name:");
             var name = Convert.ToString(Console.ReadLine());
@@ -31,14 +59,14 @@ namespace DeliveryService.UI
             Console.WriteLine("Enter calories:");
             var calories = int.Parse(Console.ReadLine());
 
-            CompanyServices.AddDish(company, name, price, composition, weight, calories);
+            _companyServices.AddDish(company, name, price, composition, weight, calories);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Dish has been added to the menu");
             Console.ResetColor();
         }
 
-        public static void ShowMenu(Company company)
+        public void ShowMenu(Company company)
         {
             var count = 1;
             foreach (var dish in company.Dishes)
@@ -53,25 +81,47 @@ namespace DeliveryService.UI
             }
         }
 
-        public static void СompanyActionsUI(Company company)
+        public void СompanyActionsUI(Company company)
         {
             Console.WriteLine("1 - Adding a new dish");
             Console.WriteLine("2 - View menu");
 
-            CompanyServices.CompanyActions(company);
+            var choice = int.TryParse(Console.ReadLine(), out int number);
+            switch (number)
+            {
+                case 1:
+                    AddDishUI(company);
+                    break;
+                case 2:
+                    ShowMenu(company);
+                    break;
+                default:
+                    Console.WriteLine("Please, start again.");
+                    break;
+            }
         }
 
-        public static void СustomerActionsUI()
+        public void СustomerActionsUI(Company restraunt, Customer customer)
         {
-            Console.WriteLine("Select dish or drink number or enter 0 for finish"); ;
+            Console.WriteLine("Select dish or drink number or enter 0 for finish");
+            ShowMenu(restraunt);
+           
+            var order = _customerServices.MakeOrder(restraunt, customer);
+            ShowFullPrice(order);
         }
 
-        public static void ShowFullPrice(Order order)
+        public void ShowFullPrice(Order order)
         {
+            Console.WriteLine("Your order:");
+            foreach(Dish dish in order.Dishes)
+            {
+                Console.WriteLine($"{dish.Name}");
+            }
+
             Console.WriteLine($"Order amount: {order.FullPrice}");
         }
 
-        public static void GetVerificationOrder(Company company, int index)
+        public void GetVerificationOrder(Company company, int index)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{company.Dishes[index - 1].Name} has been added to the order");

@@ -1,13 +1,15 @@
 ﻿using System;
 using DeliveryService.Models;
+using DeliveryService.UI;
 using DeliveryService.Services;
+using DeliveryService.Database;
 
 
 namespace DeliveryService
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var company = new Company();
             company.Dishes.Add(new Dish() { Name = "Coffee", Price = 40.0, Сomposition = "Instant coffee", Weight = 90, Calories = 1});
@@ -16,9 +18,13 @@ namespace DeliveryService
             Console.Clear();
 
             var customer = new Customer();
-            var starter = new Starter();
+            var orderServices = new OrderServices();
+            var orderDatabase = new OrderDatabase();
+            var customerServices = new CustomerServices(orderServices, orderDatabase);
+            var companyServices = new CompanyServices();
 
-            starter.Start(company, customer);           
+            var user = new UserUI(customerServices, companyServices);
+            user.StartUI(company, customer);
         }
     }
 }
