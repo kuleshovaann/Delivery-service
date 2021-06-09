@@ -8,7 +8,7 @@ namespace DeliveryService.Models
 
         public double Price { get; set; }
 
-        public string Сomposition { get; set; }
+        public string Composition { get; set; }
 
         public double Weight { get; set; }
 

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System;
+using DeliveryService.Contracts;
 
 namespace DeliveryService.Models
 {

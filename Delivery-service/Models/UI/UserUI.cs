@@ -74,7 +74,7 @@ namespace DeliveryService.UI
                 Console.WriteLine($"{count}");
                 Console.WriteLine($"Name: {dish.Name}");
                 Console.WriteLine($"Price: {dish.Price}");
-                Console.WriteLine($"Сomposition: {dish.Сomposition}");
+                Console.WriteLine($"Сomposition: {dish.Composition}");
                 Console.WriteLine($"Weight: {dish.Weight}");
                 Console.WriteLine($"Calories: {dish.Calories}");
                 count++;

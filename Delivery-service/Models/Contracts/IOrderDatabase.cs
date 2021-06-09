@@ -7,6 +7,6 @@ namespace DeliveryService.Contracts
     {
         public List<Order> Orders { get; set; }
 
-        public List<Dish> DishesBase { get; set; }
+        public List<Dish> DishesDatabase { get; set; }
     }
 }

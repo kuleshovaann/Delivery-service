@@ -6,6 +6,6 @@ namespace DeliveryService.Contracts
     {
         void AddDish(Company company, string name, double price, string composition, double weight, int calories);
 
-        public void DeleteDish(Company company);
+        void DeleteDish(Company company);
     }
 }

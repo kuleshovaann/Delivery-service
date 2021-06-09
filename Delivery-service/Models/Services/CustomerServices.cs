@@ -9,17 +9,22 @@ namespace DeliveryService.Services
         private IOrderServices _orderServices;
         private IOrderDatabase _orderDatabase;
         private ILogger _logger;
+        private ISerializator _serializator;
 
-        public CustomerServices(IOrderServices orderServices, IOrderDatabase orderDatabase, ILogger logger)
+        public CustomerServices(IOrderServices orderServices,
+                                IOrderDatabase orderDatabase,
+                                ILogger logger,
+                                ISerializator serializator)
         {
             _orderServices = orderServices;
             _orderDatabase = orderDatabase;
             _logger = logger;
+            _serializator = serializator;
         }
 
         public Order MakeOrder(Company restraunt, Customer customer)
         {
-            var order = new Order();
+            var order = _serializator.DeserializeDataOrder();
             int index = int.Parse(Console.ReadLine());
 
             while (index != 0)
@@ -32,8 +37,9 @@ namespace DeliveryService.Services
 
             _orderDatabase.Orders.Add(order);
             _logger.CreateNewNote("New order has been created");
+            _serializator.SerializeDataOrder(order);
 
-            return order;           
+            return order;
         }
     }
 }

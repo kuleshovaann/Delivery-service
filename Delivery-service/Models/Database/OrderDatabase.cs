@@ -8,6 +8,6 @@ namespace DeliveryService.Database
     {
         public List<Order> Orders { get; set; } = new List<Order>();
 
-        public List<Dish> DishesBase { get; set; } = new List<Dish>();
+        public List<Dish> DishesDatabase { get; set; } = new List<Dish>();
     }
 }
