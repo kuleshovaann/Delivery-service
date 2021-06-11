@@ -15,10 +15,9 @@ namespace DeliveryService.Services
             _orderDatabase = orderDatabase;
         }
 
-        public Order MakeOrder(Company restraunt, Customer customer)
+        public Order MakeOrder(Company restraunt, Customer customer, int index)
         {
             var order = new Order();
-            int index = int.Parse(Console.ReadLine());
 
             while (index != 0)
             {

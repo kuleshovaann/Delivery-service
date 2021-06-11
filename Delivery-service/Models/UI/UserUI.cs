@@ -105,8 +105,10 @@ namespace DeliveryService.UI
         {
             Console.WriteLine("Select dish or drink number or enter 0 for finish");
             ShowMenu(restraunt);
-           
-            var order = _customerServices.MakeOrder(restraunt, customer);
+
+            int index = int.Parse(Console.ReadLine());
+
+            var order = _customerServices.MakeOrder(restraunt, customer, index);
             ShowFullPrice(order);
         }
 

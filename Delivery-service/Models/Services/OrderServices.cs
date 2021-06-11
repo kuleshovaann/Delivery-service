@@ -1,6 +1,5 @@
 ﻿using System;
 using DeliveryService.Models;
-using DeliveryService.UI;
 using DeliveryService.Contracts;
 
 namespace DeliveryService.Services
