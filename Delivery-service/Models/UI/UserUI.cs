@@ -6,14 +6,17 @@ namespace DeliveryService.UI
 {
     public class UserUI
     {
-        private ICustomerServices _customerServices;
         private ICompanyServices _companyServices;
+        private IOrderServices _orderServices;
+        private IOrderDatabase _orderDatabase;
 
-        public UserUI(ICustomerServices customerServices,
-                      ICompanyServices companyServices)
+        public UserUI(IOrderServices orderServices,
+                      ICompanyServices companyServices,
+                      IOrderDatabase orderDatabase)
         {
-            _customerServices = customerServices;
+            _orderServices = orderServices;
             _companyServices = companyServices;
+            _orderDatabase = orderDatabase;
         }
 
         public void StartUI(Company company, Customer customer)
@@ -32,7 +35,7 @@ namespace DeliveryService.UI
                         СompanyActionsUI(company);
                         break;
                     case 2:
-                        СustomerActionsUI(company, customer);
+                        MakeOrderUI(company, customer);
                         break;
                     default:
                         Console.WriteLine("Please, start again.");
@@ -101,14 +104,23 @@ namespace DeliveryService.UI
             }
         }
 
-        public void СustomerActionsUI(Company restraunt, Customer customer)
+        public void MakeOrderUI(Company restraunt, Customer customer)
         {
             Console.WriteLine("Select dish or drink number or enter 0 for finish");
             ShowMenu(restraunt);
 
             int index = int.Parse(Console.ReadLine());
+            var order = new Order();
 
-            var order = _customerServices.MakeOrder(restraunt, customer, index);
+            while(index != 0)
+            {
+                _orderServices.AddToOrder(restraunt, order, index);
+                Console.WriteLine();
+
+                index = int.Parse(Console.ReadLine());
+            }
+
+            _orderDatabase.Orders.Add(order);
             ShowFullPrice(order);
         }
 

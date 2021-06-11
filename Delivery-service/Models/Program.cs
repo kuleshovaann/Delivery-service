@@ -18,12 +18,11 @@ namespace DeliveryService
             Console.Clear();
 
             var customer = new Customer();
-            var orderServices = new OrderServices();
             var orderDatabase = new OrderDatabase();
-            var customerServices = new CustomerServices(orderServices, orderDatabase);
+            var orderServices = new OrderServices(orderDatabase);     
             var companyServices = new CompanyServices(orderDatabase);
 
-            var user = new UserUI(customerServices, companyServices);
+            var user = new UserUI(orderServices, companyServices);
             user.StartUI(company, customer);
         }
     }
