@@ -18,7 +18,6 @@ namespace DeliveryService
             var customer = new Customer();
             var orderServices = new OrderServices();
             var orderDatabase = new OrderDatabase();
-            var customerServices = new CustomerServices(orderServices, orderDatabase, logger, serializer);
             var companyServices = new CompanyServices(orderDatabase, logger, serializer);
 
             if (company.Dishes.Count == 0)
@@ -26,7 +25,7 @@ namespace DeliveryService
                 companyServices.GetStartMenu(company);
             }
 
-            var user = new UserUI(customerServices, companyServices);
+            var user = new UserUI(orderServices, companyServices, orderDatabase, logger, serializer);
             user.StartUI(company, customer);
         }
     }
