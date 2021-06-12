@@ -23,7 +23,7 @@ namespace DeliveryService.Services
                 Calories = calories
             });
 
-            _orderDatabase.DishesBase.Add(new Dish()
+            _orderDatabase.Dishes.Add(new Dish()
             {
                 Name = name,
                 Price = price,

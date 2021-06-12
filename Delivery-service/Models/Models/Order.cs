@@ -15,5 +15,9 @@ namespace DeliveryService.Models
         public double FullPrice { get; set; }
 
         public List<Dish> Dishes { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Address { get; set; }
     }
 }

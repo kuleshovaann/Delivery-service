@@ -4,7 +4,6 @@ using DeliveryService.UI;
 using DeliveryService.Services;
 using DeliveryService.Database;
 
-
 namespace DeliveryService
 {
     internal class Program

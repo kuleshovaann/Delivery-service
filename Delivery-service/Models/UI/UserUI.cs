@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using DeliveryService.Contracts;
 using DeliveryService.Models;
 
@@ -8,15 +9,12 @@ namespace DeliveryService.UI
     {
         private ICompanyServices _companyServices;
         private IOrderServices _orderServices;
-        private IOrderDatabase _orderDatabase;
 
         public UserUI(IOrderServices orderServices,
-                      ICompanyServices companyServices,
-                      IOrderDatabase orderDatabase)
+                      ICompanyServices companyServices)
         {
             _orderServices = orderServices;
             _companyServices = companyServices;
-            _orderDatabase = orderDatabase;
         }
 
         public void StartUI(Company company, Customer customer)
@@ -115,13 +113,59 @@ namespace DeliveryService.UI
             while(index != 0)
             {
                 _orderServices.AddToOrder(restraunt, order, index);
+                GetVerificationOrder(restraunt, index);
                 Console.WriteLine();
 
                 index = int.Parse(Console.ReadLine());
             }
 
-            _orderDatabase.Orders.Add(order);
+            order.Phone = GetPhone();
+            order.Address = GetAddress();
+
+            _orderServices.AddToDataBase(order);
             ShowFullPrice(order);
+        }
+
+        public string GetPhone()
+        {
+            Console.WriteLine("Enter your phone in the format: +380(95)222 33 88 or +380952223388, or 0952223388, or 095 222 33 88.");
+            var number = Convert.ToString(Console.ReadLine());
+
+            if (IsPhoneNumberValid(number))
+            {
+                return number;
+            }
+
+            return null;
+        }
+
+        public bool IsPhoneNumberValid(string numberPhone)
+        {
+            var pattern = @"\+?(38)?0\(?\d{2}\)?\s?\d{3}\s?\d{2}\s?\d{2}";
+            var expression = new Regex(pattern, RegexOptions.Compiled);
+
+            return expression.IsMatch(numberPhone);
+        }
+
+        public string GetAddress()
+        {
+            Console.WriteLine("Enter your address: ");
+            var address = Convert.ToString(Console.ReadLine());
+
+            if (IsAddressValid(address))
+            {
+                return address;
+            }
+
+            return null;
+        }
+
+        public bool IsAddressValid(string address)
+        {
+            var pattern = @"(?:улица|ул\.?)\s?[А-Я][а-я]*\.?\,?\s?(?:д)(?:ом)?.?\s?\d*\,?\s?(?:кв)?\.?\s?(?:артира)?\s?\d*";
+            var expression = new Regex(pattern, RegexOptions.Compiled);
+
+            return expression.IsMatch(address);
         }
 
         public void ShowFullPrice(Order order)
