@@ -18,10 +18,10 @@ namespace DeliveryService
 
             var customer = new Customer();
             var orderDatabase = new OrderDatabase();
-            var orderServices = new OrderServices();     
+            var orderServices = new OrderServices(orderDatabase);     
             var companyServices = new CompanyServices(orderDatabase);
 
-            var user = new UserUI(orderServices, companyServices, orderDatabase);
+            var user = new UserUI(orderServices, companyServices);
             user.StartUI(company, customer);
         }
     }

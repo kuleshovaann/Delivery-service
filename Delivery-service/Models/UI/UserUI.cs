@@ -9,15 +9,12 @@ namespace DeliveryService.UI
     {
         private ICompanyServices _companyServices;
         private IOrderServices _orderServices;
-        private IOrderDatabase _orderDatabase;
 
         public UserUI(IOrderServices orderServices,
-                      ICompanyServices companyServices,
-                      IOrderDatabase orderDatabase)
+                      ICompanyServices companyServices)
         {
             _orderServices = orderServices;
             _companyServices = companyServices;
-            _orderDatabase = orderDatabase;
         }
 
         public void StartUI(Company company, Customer customer)
@@ -125,7 +122,7 @@ namespace DeliveryService.UI
             order.Phone = GetPhone();
             order.Address = GetAddress();
 
-            _orderDatabase.Orders.Add(order);
+            _orderServices.AddToDataBase(order);
             ShowFullPrice(order);
         }
 
@@ -134,7 +131,7 @@ namespace DeliveryService.UI
             Console.WriteLine("Enter your phone in the format: +380(95)222 33 88 or +380952223388, or 0952223388, or 095 222 33 88.");
             var number = Convert.ToString(Console.ReadLine());
 
-            if (GetVerificationPhone(number))
+            if (IsPhoneNumberValid(number))
             {
                 return number;
             }
@@ -142,7 +139,7 @@ namespace DeliveryService.UI
             return null;
         }
 
-        public bool GetVerificationPhone(string numberPhone)
+        public bool IsPhoneNumberValid(string numberPhone)
         {
             var pattern = @"\+?(38)?0\(?\d{2}\)?\s?\d{3}\s?\d{2}\s?\d{2}";
             var expression = new Regex(pattern, RegexOptions.Compiled);
@@ -155,7 +152,7 @@ namespace DeliveryService.UI
             Console.WriteLine("Enter your address: ");
             var address = Convert.ToString(Console.ReadLine());
 
-            if (GetVerificationAddress(address))
+            if (IsAddressValid(address))
             {
                 return address;
             }
@@ -163,7 +160,7 @@ namespace DeliveryService.UI
             return null;
         }
 
-        public bool GetVerificationAddress(string address)
+        public bool IsAddressValid(string address)
         {
             var pattern = @"(?:улица|ул\.?)\s?[А-Я][а-я]*\.?\,?\s?(?:д)(?:ом)?.?\s?\d*\,?\s?(?:кв)?\.?\s?(?:артира)?\s?\d*";
             var expression = new Regex(pattern, RegexOptions.Compiled);

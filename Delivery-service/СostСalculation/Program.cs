@@ -154,8 +154,6 @@ namespace Lecture1
 
             int[] houseNumb = Array.ConvertAll(houseNumbers, s => int.TryParse(s, out var x) ? x : -1);
 
-            int i;
-
             for (int number = 0; number < destinations.Count() - 1; number++)
             {
                 if (houseNumb[number + 1] - houseNumb[number] == 1 && streetNames[number + 1] == streetNames[number])
