@@ -1,16 +1,13 @@
-﻿using System;
+﻿using DeliveryService.Contracts;
 using System.Collections.Generic;
 using DeliveryService.Models;
 
 namespace DeliveryService.Database
 {
-    public class OrderDatabase
+    public class OrderDatabase : IOrderDatabase
     {
         public List<Order> Orders { get; set; } = new List<Order>();
 
-        public static void AddToOrderDataBase(OrderDatabase database, Order order)
-        {
-            database.Orders.Add(order);
-        }
+        public List<Dish> DishesBase { get; set; } = new List<Dish>();
     }
 }

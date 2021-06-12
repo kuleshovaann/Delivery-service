@@ -1,13 +1,12 @@
 ﻿using System;
 using DeliveryService.Models;
-using DeliveryService.UI;
 using DeliveryService.Contracts;
 
 namespace DeliveryService.Services
 {
     public class OrderServices : IOrderServices
     {
-        public static void AddToOrder(Company company, Order order, int index)
+        public void AddToOrder(Company company, Order order, int index)
         {
             if (index <= company.Dishes.Count)
             {
@@ -21,8 +20,6 @@ namespace DeliveryService.Services
                 });
 
                 order.FullPrice += company.Dishes[index - 1].Price;
-
-                UserUI.GetVerificationOrder(company, index);
             }
         }
     }
