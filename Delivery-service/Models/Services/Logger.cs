@@ -26,7 +26,7 @@ namespace DeliveryService.Services
             {
                 return;
             }
-
+            
             using var file = new FileStream(path, FileMode.Create);
             using var stream = new StreamWriter(file, Encoding.UTF8);
         }
