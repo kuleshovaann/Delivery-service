@@ -26,9 +26,9 @@ namespace DeliveryService.Services
                 Calories = calories
             });
 
-            _logger.CreateNewNote($"The dish *{name}* has been added to the menu");
+            _logger.Log($"The dish *{name}* has been added to the menu");
 
-            _orderDatabase.DishesBase.Add(new Dish()
+            _orderDatabase.Dishes.Add(new Dish()
             {
                 Name = name,
                 Price = price,
@@ -37,15 +37,14 @@ namespace DeliveryService.Services
                 Calories = calories
             });
 
-            _logger.CreateNewNote($"The dish *{name}* has been added to the base of dishes");
+            _logger.Log($"The dish *{name}* has been added to the base of dishes");
         }
 
-        public void DeleteDish(Company company)
-        {
-            var choice = int.TryParse(Console.ReadLine(), out int index);
-            _logger.CreateNewNote($"The dish *{company.Dishes[index - 1].Name}* has been removed from the menu");
+        public void DeleteDish(Company company, int index)
+        {            
+            _logger.Log($"The dish *{company.Dishes[index - 1].Name}* has been removed from the menu");
             company.Dishes.RemoveAt(index - 1);
-            _orderDatabase.DishesBase.RemoveAt(index - 1);
+            _orderDatabase.Dishes.RemoveAt(index - 1);
         }
     }
 }
