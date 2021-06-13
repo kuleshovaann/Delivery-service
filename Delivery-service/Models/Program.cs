@@ -3,7 +3,6 @@ using DeliveryService.Models;
 using DeliveryService.UI;
 using DeliveryService.Services;
 using DeliveryService.Database;
-using System.Linq;
 
 namespace DeliveryService
 {
@@ -12,12 +11,11 @@ namespace DeliveryService
         private static void Main(string[] args)
         {
             var logger = new Logger();
-            var serializer = new Serializator();
-            var company = serializer.DeserializeDataCompany();
+            var serializer = new FileServices();
+            var company = serializer.GetFromFileDataCompany();
 
-            var customer = new Customer();
-            var orderServices = new OrderServices();
-            var orderDatabase = new OrderDatabase();
+            var orderDatabase = new OrderDatabase(serializer);
+            var orderServices = new OrderServices(orderDatabase);
             var companyServices = new CompanyServices(orderDatabase, logger, serializer);
 
             if (company.Dishes.Count == 0)
@@ -25,7 +23,8 @@ namespace DeliveryService
                 companyServices.GetStartMenu(company);
             }
 
-            var user = new UserUI(orderServices, companyServices, orderDatabase, logger, serializer);
+            var customer = new Customer();
+            var user = new UserUI(orderServices, companyServices, orderDatabase, logger);
             user.StartUI(company, customer);
         }
     }

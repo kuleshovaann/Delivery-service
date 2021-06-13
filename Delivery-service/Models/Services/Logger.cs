@@ -9,10 +9,10 @@ namespace DeliveryService.Services
     {
         public Logger()
         {
-            CreateOrOpenFile();
+            CreateFile();
         }
 
-        public string CreateOrOpenFile()
+        private void CreateFile()
         {
             var pathParts = new[]
             {
@@ -24,21 +24,27 @@ namespace DeliveryService.Services
 
             if (File.Exists(path))
             {
-                return path;
+                return;
             }
 
             using var file = new FileStream(path, FileMode.Create);
             using var stream = new StreamWriter(file, Encoding.UTF8);
-
-            return null;
         }
 
-        public void CreateNewNote(string note)
+        public void Log(string note)
         {
-            using var file = new FileStream(CreateOrOpenFile(), FileMode.Append);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                $"{DateTime.Now.ToString("d")}" + ".txt");
+
+            if (!File.Exists(path))
+            {
+                CreateFile();
+            }
+
+            using var file = new FileStream(path, FileMode.Append);
             using var stream = new StreamWriter(file, Encoding.UTF8);
 
             stream.WriteLine(note);
-        }    
+        }
     }
 }

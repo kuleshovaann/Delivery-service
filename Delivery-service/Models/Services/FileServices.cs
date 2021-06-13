@@ -8,21 +8,21 @@ using DeliveryService.Contracts;
 
 namespace DeliveryService.Services
 {
-    public class Serializator : ISerializator
+    public class FileServices : IFileServices
     {
         private string _pathCompany;
         private string _pathOrder;
 
-        public Serializator()
+        public FileServices()
         {
             _pathCompany = AppDomain.CurrentDomain.BaseDirectory +
-                "DishesDatabaseJson.json";
+                "DishesDatabaseJson";
 
             _pathOrder = AppDomain.CurrentDomain.BaseDirectory +
-                "OrdersDatabaseJson.json";
+                "OrdersDatabaseJson";
         }
 
-        public void SerializeDataCompany(Company company)
+        public void SaveToFlieDataCompany(Company company)
         {
             var serialized = JsonSerializer.Serialize(company);
 
@@ -34,7 +34,7 @@ namespace DeliveryService.Services
             Console.WriteLine(serialized);
         }
 
-        public Company DeserializeDataCompany()
+        public Company GetFromFileDataCompany()
         {
             if (File.Exists(_pathCompany))
             {
@@ -49,7 +49,7 @@ namespace DeliveryService.Services
             return new Company();
         }
 
-        public void SerializeDataOrder(Order order)
+        public void SaveToFlieDataOrder(Order order)
         {
             var serialized = JsonSerializer.Serialize(order);
 
@@ -57,11 +57,9 @@ namespace DeliveryService.Services
             using var stream = new StreamWriter(file, Encoding.UTF8);
 
             stream.Write(serialized);
-
-            Console.WriteLine(serialized);
         }
 
-        public Order DeserializeDataOrder()
+        public Order GetFromFileDataOrder()
         {
             if (File.Exists(_pathOrder))
             {

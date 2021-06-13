@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using DeliveryService.Contracts;
 using DeliveryService.Models;
 
@@ -10,19 +11,16 @@ namespace DeliveryService.UI
         private IOrderServices _orderServices;
         private IOrderDatabase _orderDatabase;
         private ILogger _logger;
-        private ISerializator _serializator;
 
         public UserUI(IOrderServices orderServices,
                       ICompanyServices companyServices,
                       IOrderDatabase orderDatabase,
-                      ILogger logger,
-                      ISerializator serializator)
+                      ILogger logger)
         {
             _orderServices = orderServices;
             _companyServices = companyServices;
             _orderDatabase = orderDatabase;
             _logger = logger;
-            _serializator = serializator;
         }
 
         public void StartUI(Company company, Customer customer)
@@ -94,6 +92,7 @@ namespace DeliveryService.UI
         {
             Console.WriteLine("1 - Adding a new dish");
             Console.WriteLine("2 - View menu");
+            Console.WriteLine("3 - Remove a dish from the menu");
 
             var choice = int.TryParse(Console.ReadLine(), out int number);
             switch (number)
@@ -104,10 +103,22 @@ namespace DeliveryService.UI
                 case 2:
                     ShowMenu(company);
                     break;
+                case 3:
+                    DeleteDishUI(company);
+                    break;
                 default:
                     Console.WriteLine("Please, start again.");
                     break;
             }
+        }
+
+        private void DeleteDishUI(Company company)
+        {
+            ShowMenu(company);
+            Console.WriteLine("Enter number of dish for delete:");
+            var choice = int.TryParse(Console.ReadLine(), out int index);
+            Console.WriteLine($"The dish *{company.Dishes[index - 1].Name}* has been removed from the menu");
+            _companyServices.DeleteDish(company, index);
         }
 
         public void MakeOrderUI(Company restraunt, Customer customer)
@@ -127,10 +138,54 @@ namespace DeliveryService.UI
                 index = int.Parse(Console.ReadLine());
             }
 
-            _orderDatabase.Orders.Add(order);
-            _logger.CreateNewNote("New order has been created");
-            _serializator.SerializeDataOrder(order);
+            order.Phone = GetPhone();
+            order.Address = GetAddress();
+
+            _orderServices.AddToDataBase(order);
+            _orderDatabase.Save(order);
             ShowFullPrice(order);
+        }
+
+        public string GetPhone()
+        {
+            Console.WriteLine("Enter your phone in the format: +380(95)222 33 88 or +380952223388, or 0952223388, or 095 222 33 88.");
+            var number = Convert.ToString(Console.ReadLine());
+
+            if (IsPhoneNumberValid(number))
+            {
+                return number;
+            }
+
+            return null;
+        }
+
+        public bool IsPhoneNumberValid(string numberPhone)
+        {
+            var pattern = @"\+?(38)?0\(?\d{2}\)?\s?\d{3}\s?\d{2}\s?\d{2}";
+            var expression = new Regex(pattern, RegexOptions.Compiled);
+
+            return expression.IsMatch(numberPhone);
+        }
+
+        public string GetAddress()
+        {
+            Console.WriteLine("Enter your address: ");
+            var address = Convert.ToString(Console.ReadLine());
+
+            if (IsAddressValid(address))
+            {
+                return address;
+            }
+
+            return null;
+        }
+
+        public bool IsAddressValid(string address)
+        {
+            var pattern = @"(?:улица|ул\.?)\s?[А-Я][а-я]*\.?\,?\s?(?:д)(?:ом)?.?\s?\d*\,?\s?(?:кв)?\.?\s?(?:артира)?\s?\d*";
+            var expression = new Regex(pattern, RegexOptions.Compiled);
+
+            return expression.IsMatch(address);
         }
 
         public void ShowFullPrice(Order order)
@@ -149,14 +204,6 @@ namespace DeliveryService.UI
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{company.Dishes[index - 1].Name} has been added to the order");
             Console.ResetColor();
-        }
-
-        public void DeleteDishUI(Company company)
-        {
-            Console.WriteLine("Select dish number for remove:");
-            ShowMenu(company);
-
-            _companyServices.DeleteDish(company);
         }
     }
 }

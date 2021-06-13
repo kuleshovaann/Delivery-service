@@ -8,9 +8,9 @@ namespace DeliveryService.Services
     {
         private IOrderDatabase _orderDatabase;
         private ILogger _logger;
-        private ISerializator _serializator;
+        private IFileServices _serializator;
 
-        public CompanyServices(IOrderDatabase orderDatabase, ILogger logger, ISerializator serializator)
+        public CompanyServices(IOrderDatabase orderDatabase, ILogger logger, IFileServices serializator)
         {
             _orderDatabase = orderDatabase;
             _logger = logger;
@@ -28,9 +28,9 @@ namespace DeliveryService.Services
                 Calories = calories
             });
 
-            _logger.CreateNewNote($"The dish *{name}* has been added to the menu");
+            _logger.Log($"The dish *{name}* has been added to the menu");
 
-            _orderDatabase.DishesDatabase.Add(new Dish()
+            _orderDatabase.Dishes.Add(new Dish()
             {
                 Name = name,
                 Price = price,
@@ -39,15 +39,14 @@ namespace DeliveryService.Services
                 Calories = calories
             });
 
-            _logger.CreateNewNote($"The dish *{name}* has been added to the base of dishes");
+            _logger.Log($"The dish *{name}* has been added to the base of dishes");
         }
 
-        public void DeleteDish(Company company)
+        public void DeleteDish(Company company, int index)
         {
-            var choice = int.TryParse(Console.ReadLine(), out int index);
-            _logger.CreateNewNote($"The dish *{company.Dishes[index - 1].Name}* has been removed from the menu");
+            _logger.Log($"The dish *{company.Dishes[index - 1].Name}* has been removed from the menu");
             company.Dishes.RemoveAt(index - 1);
-            _orderDatabase.DishesDatabase.RemoveAt(index - 1);
+            _orderDatabase.Dishes.RemoveAt(index - 1);
         }
 
         public void GetStartMenu(Company company)
@@ -57,7 +56,7 @@ namespace DeliveryService.Services
             company.Dishes.Add(new Dish() { Name = "Green tea", Price = 30.0, Composition = "Green tea leaves", Weight = 200, Calories = 0 });
             Console.Clear();
 
-            _serializator.SerializeDataCompany(company);
+            _serializator.SaveToFlieDataCompany(company);
         }
     }
 }

@@ -6,6 +6,8 @@ namespace DeliveryService.Contracts
     public interface IOrderDatabase
     {
         List<Order> Orders { get; set; }
-        List<Dish> DishesDatabase { get; set; }
+        List<Dish> Dishes { get; set; }
+
+        void Save(Order order);
     }
 }
