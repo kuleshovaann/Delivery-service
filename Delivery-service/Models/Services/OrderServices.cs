@@ -21,7 +21,7 @@ namespace DeliveryService.Services
                 {
                     Name = company.Dishes[index - 1].Name,
                     Price = company.Dishes[index - 1].Price,
-                    Сomposition = null,
+                    Composition = null,
                     Weight = 0.0,
                     Calories = 0
                 });

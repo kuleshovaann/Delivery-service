@@ -4,6 +4,6 @@ namespace DeliveryService.Contracts
 {
     public interface ILogger
     {
-        void Log(string note);      
+        void Log(string note);
     }
 }

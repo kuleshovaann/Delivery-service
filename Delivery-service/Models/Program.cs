@@ -10,18 +10,18 @@ namespace DeliveryService
     {
         private static void Main(string[] args)
         {
-
             var logger = new Logger();
+            var serializer = new FileServices();
+            var company = serializer.GetFromFileDataCompany();
 
-            var orderDatabase = new OrderDatabase();
+            var orderDatabase = new OrderDatabase(serializer);
             var orderServices = new OrderServices(orderDatabase);
-            var companyServices = new CompanyServices(orderDatabase, logger);
+            var companyServices = new CompanyServices(orderDatabase, logger, serializer);
 
-            var company = new Company();
-            companyServices.AddDish(company, "Coffee", 40.0, "Instant coffee", 150, 15);
-            companyServices.AddDish(company, "Black tea", 40.0, "Ceylon long leaf tea", 250, 1);
-            companyServices.AddDish(company, "Green tea", 40.0, "Green tea leaves", 250, 1);
-            Console.Clear();
+            if (company.Dishes.Count == 0)
+            {
+                companyServices.GetStartMenu(company);
+            }
 
             var customer = new Customer();
             var user = new UserUI(orderServices, companyServices, orderDatabase, logger);
