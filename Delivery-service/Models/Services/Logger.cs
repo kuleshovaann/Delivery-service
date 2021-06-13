@@ -24,13 +24,11 @@ namespace DeliveryService.Services
 
             if (File.Exists(path))
             {
+                return;
+            }
             
-            }
-            else
-            {
-                using var file = new FileStream(path, FileMode.Create);
-                using var stream = new StreamWriter(file, Encoding.UTF8);
-            }
+            using var file = new FileStream(path, FileMode.Create);
+            using var stream = new StreamWriter(file, Encoding.UTF8);
         }
 
         public void Log(string note)
