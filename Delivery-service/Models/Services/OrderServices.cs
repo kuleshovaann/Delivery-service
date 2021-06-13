@@ -12,6 +12,7 @@ namespace DeliveryService.Services
         {
             _orderDatabase = orderDatabase;
         }
+
         public void AddToOrder(Company company, Order order, int index)
         {
             if (index <= company.Dishes.Count)

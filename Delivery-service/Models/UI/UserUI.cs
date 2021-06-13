@@ -9,14 +9,20 @@ namespace DeliveryService.UI
     {
         private ICompanyServices _companyServices;
         private IOrderServices _orderServices;
+        private IOrderDatabase _orderDatabase;
+        private ILogger _logger;
 
         public UserUI(IOrderServices orderServices,
-                      ICompanyServices companyServices)
+                      ICompanyServices companyServices,
+                      IOrderDatabase orderDatabase,
+                      ILogger logger)
         {
             _orderServices = orderServices;
             _companyServices = companyServices;
+            _orderDatabase = orderDatabase;
+            _logger = logger;
         }
-
+      
         public void StartUI(Company company, Customer customer)
         {
             while (true)
@@ -86,6 +92,7 @@ namespace DeliveryService.UI
         {
             Console.WriteLine("1 - Adding a new dish");
             Console.WriteLine("2 - View menu");
+            Console.WriteLine("3 - Remove a dish from the menu");
 
             var choice = int.TryParse(Console.ReadLine(), out int number);
             switch (number)
@@ -96,10 +103,22 @@ namespace DeliveryService.UI
                 case 2:
                     ShowMenu(company);
                     break;
+                case 3:
+                    DeleteDishUI(company);
+                    break;
                 default:
                     Console.WriteLine("Please, start again.");
                     break;
             }
+        }
+
+        private void DeleteDishUI(Company company)
+        {
+            ShowMenu(company);
+            Console.WriteLine("Enter number of dish for delete:");
+            var choice = int.TryParse(Console.ReadLine(), out int index);
+            Console.WriteLine($"The dish *{company.Dishes[index - 1].Name}* has been removed from the menu");
+            _companyServices.DeleteDish(company, index);
         }
 
         public void MakeOrderUI(Company restraunt, Customer customer)
@@ -110,7 +129,7 @@ namespace DeliveryService.UI
             int index = int.Parse(Console.ReadLine());
             var order = new Order();
 
-            while(index != 0)
+            while (index != 0)
             {
                 _orderServices.AddToOrder(restraunt, order, index);
                 GetVerificationOrder(restraunt, index);
@@ -171,7 +190,7 @@ namespace DeliveryService.UI
         public void ShowFullPrice(Order order)
         {
             Console.WriteLine("Your order:");
-            foreach(Dish dish in order.Dishes)
+            foreach (Dish dish in order.Dishes)
             {
                 Console.WriteLine($"{dish.Name}");
             }
