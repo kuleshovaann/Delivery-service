@@ -16,10 +16,10 @@ namespace DeliveryService.Services
         public FileServices()
         {
             _pathCompany = AppDomain.CurrentDomain.BaseDirectory +
-                "DishesDatabaseJson";
+                "DishesDatabase.json";
 
             _pathOrder = AppDomain.CurrentDomain.BaseDirectory +
-                "OrdersDatabaseJson";
+                "OrdersDatabase.json";
         }
 
         public void SaveToFlieDataCompany(Company company)
