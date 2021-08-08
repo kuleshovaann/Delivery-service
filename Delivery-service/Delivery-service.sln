@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryService", "Models\DeliveryService.csproj", "{6F9153C7-119A-403D-9009-11F89BC3F549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СostСalculation", "СostСalculation\СostСalculation.csproj", "{74E01583-9BFE-40BD-8960-E8CDFF1586B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "СostСalculation", "СostСalculation\СostСalculation.csproj", "{74E01583-9BFE-40BD-8960-E8CDFF1586B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliverySystem", "Entity\DeliverySystem\DeliverySystem.csproj", "{1377F3A1-71C4-4C5F-B8DE-A1CD26945763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{74E01583-9BFE-40BD-8960-E8CDFF1586B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74E01583-9BFE-40BD-8960-E8CDFF1586B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74E01583-9BFE-40BD-8960-E8CDFF1586B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1377F3A1-71C4-4C5F-B8DE-A1CD26945763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1377F3A1-71C4-4C5F-B8DE-A1CD26945763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1377F3A1-71C4-4C5F-B8DE-A1CD26945763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1377F3A1-71C4-4C5F-B8DE-A1CD26945763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
