@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DeliverySystem.Models
 {
     public class Customer
     {
-        public string Name { get; set; }
-        public List<string> PhoneNumbers { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
     }
 }

@@ -1,27 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using DeliverySystem.Conctracts;
+using DeliverySystem.Enums;
 
 namespace DeliverySystem.Models
 {
-    public class Provider : IProvider
+    public class Provider
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-
         public List<Product> Products { get; set; }
-
-        public Сategory ProviderСategory { get; set; }
-
-        public void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        public enum Сategory
-        {
-            FoodStore,
-            Restaurant,
-            OnlineStore
-        }
+        public ProviderType ProviderType { get; set; }       
     }
 }
