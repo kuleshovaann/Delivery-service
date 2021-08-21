@@ -1,5 +1,6 @@
 ﻿using System;
-using DeliverySystem.Models;
+using DeliverySystem.Services;
+using DeliverySystem.DataBase;
 using System.Linq;
 
 namespace DeliverySystem
@@ -8,7 +9,12 @@ namespace DeliverySystem
     {
         static void Main(string[] args)
         {
+            var providerDataBase = new ProviderDataBase();
+            var productDataBase = new ProductDataBase();
+            var creator = new DataCreator(providerDataBase, productDataBase);
+            var linq = new LinqRequests(providerDataBase, productDataBase);
 
+            Console.ReadKey();
         }      
     }
 }
