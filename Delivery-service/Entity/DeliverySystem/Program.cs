@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DeliverySystem.Services;
 using DeliverySystem.DataBase;
+using DeliverySystem.Data;
 using DeliverySystem.Repository;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
@@ -12,11 +13,12 @@ namespace DeliverySystem
     {
         static void Main(string[] args)
         {
+            var data = new DataContext();
+
             var configuration = Initialize();
             var repository = new RepositoryProvider(configuration.GetConnectionString("DefaultConnection"));
-            var e = repository.GetProviderById(1);
-
-
+            var provider = repository.GetProviderById(1);
+          
             var providerDataBase = new ProviderDataBase();
             var productDataBase = new ProductDataBase();
             var creator = new DataCreator(providerDataBase, productDataBase);
