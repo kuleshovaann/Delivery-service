@@ -60,7 +60,6 @@ namespace DeliveryService.Services
             _serializator.SaveToFlieDataCompany(company);
         }
 
-        //mothod for TASK 1 ASP
         public IEnumerable<Dish> GetMenu()
         {
             var menu = new List<Dish>();
