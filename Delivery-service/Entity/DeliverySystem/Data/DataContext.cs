@@ -12,10 +12,10 @@ namespace DeliverySystem.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
 
-        public DataContext()
-        {
-            Database.EnsureCreated();
-        }
+        //public DataContext()
+        //{
+        //    Database.EnsureCreated();
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
