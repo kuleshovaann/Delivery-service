@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DeliverySystem.Migrations
+namespace DeliverySystem.DAL.Migrations
 {
     public partial class Card : Migration
     {

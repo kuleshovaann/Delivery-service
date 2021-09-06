@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DeliverySystem.Models;
+using DeliverySystem.DAL.Models;
 
-namespace DeliverySystem.Data
+namespace DeliverySystem.DAL.Data
 {
     public class DataContext : DbContext
     {
@@ -12,10 +12,11 @@ namespace DeliverySystem.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
 
-        //public DataContext()
-        //{
-        //    Database.EnsureCreated();
-        //}
+        public DataContext(){ }
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

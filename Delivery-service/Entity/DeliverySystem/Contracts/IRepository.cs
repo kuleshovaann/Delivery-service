@@ -1,14 +1,15 @@
-﻿using System;
+﻿using DeliverySystem.DAL.Models;
+using System;
 using System.Collections.Generic;
 
-namespace DeliverySystem.Contracts
+namespace DeliverySystem.DAL.Contracts
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : BaseModel
     {
         IEnumerable<T> GetAll();
         T Get(int id);
-        void Create(T item);
-        void Update(T item);
+        T Create(T item);
+        T Update(T item);
         void Delete(int id);
     }
 }

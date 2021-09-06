@@ -1,14 +1,14 @@
-﻿using DeliverySystem.Contracts;
-using DeliverySystem.Models;
+﻿using DeliverySystem.DAL.Contracts;
+using DeliverySystem.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeliverySystem.Data
+namespace DeliverySystem.DAL.Data
 {
-    class UnitOfWork
+    public class UnitOfWork
     {
         private DataContext dataContext = new DataContext();
         private IRepository<Customer> _customerRepository;

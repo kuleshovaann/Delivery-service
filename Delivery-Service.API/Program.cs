@@ -1,3 +1,5 @@
+using DeliverySystem.DAL.Data;
+using DeliverySystem.DAL.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +15,8 @@ namespace Delivery_Service.API
     {
         public static void Main(string[] args)
         {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var creator = new DataCreator(unitOfWork);
             CreateHostBuilder(args).Build().Run();
         }
 

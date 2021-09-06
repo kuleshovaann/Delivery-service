@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using DeliverySystem.Enums;
+using DeliverySystem.DAL.Enums;
 
-namespace DeliverySystem.Models
+namespace DeliverySystem.DAL.Models
 {
-    public class Provider
+    public class Provider : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public List<Product> Products { get; set; } = new List<Product>();
         public ProviderType ProviderType { get; set; }       
