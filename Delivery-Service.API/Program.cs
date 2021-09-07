@@ -3,11 +3,7 @@ using DeliverySystem.DAL.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Delivery_Service.API
 {
@@ -15,8 +11,10 @@ namespace Delivery_Service.API
     {
         public static void Main(string[] args)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
+            var dataContext = new DataContext();
+            UnitOfWork unitOfWork = new UnitOfWork(dataContext);
             var creator = new DataCreator(unitOfWork);
+
             CreateHostBuilder(args).Build().Run();
         }
 

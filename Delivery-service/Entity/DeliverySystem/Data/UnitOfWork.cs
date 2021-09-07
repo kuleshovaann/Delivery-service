@@ -10,12 +10,17 @@ namespace DeliverySystem.DAL.Data
 {
     public class UnitOfWork
     {
-        private DataContext dataContext = new DataContext();
+        private DataContext dataContext;
         private IRepository<Customer> _customerRepository;
         private IRepository<Delivery> _deliveryRepository;
         private IRepository<Order> _orderRepository;
         private IRepository<Product> _productRepository;
         private IRepository<Provider> _providerRepository;
+
+        public UnitOfWork(DataContext dataContext)
+        {
+            this.dataContext = dataContext;
+        }
 
         public IRepository<Customer> Customers
         {

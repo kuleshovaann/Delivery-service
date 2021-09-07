@@ -1,19 +1,16 @@
-﻿using System;
-using DeliverySystem.DAL.Services;
-using DeliverySystem.DAL.Data;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿//using DeliverySystem.DAL.Data;
+//using DeliverySystem.DAL.Services;
+//using System;
 
-namespace DeliverySystem.DAL
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            var creator = new DataCreator(unitOfWork);
-
-            Console.ReadKey();
-        }
-    }
-}
+//namespace DeliverySystem.DAL
+//{
+//    public class Program
+//    {
+//        public static void Main(string[] args)
+//        {
+//            var dataContext = new DataContext();
+//            UnitOfWork unitOfWork = new UnitOfWork(dataContext);
+//            var creator = new DataCreator(unitOfWork);
+//        }
+//    }
+//}

@@ -8,6 +8,7 @@ using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using DeliverySystem.DAL.Data;
 using Microsoft.EntityFrameworkCore;
+using DeliverySystem.DAL.Services;
 
 namespace Delivery_Service.API
 {
@@ -22,22 +23,22 @@ namespace Delivery_Service.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddMvc();
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(connection));
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery_Service.API", Version = "v1" });
             });
 
-            //services.AddTransient<IRepository<Customer>, Repository<Customer>>();
-            //services.AddTransient<IRepository<Delivery>, Repository<Delivery>>();
-            //services.AddTransient<IRepository<Order>, Repository<Order>>();
-            //services.AddTransient<IRepository<Product>, Repository<Product>>();
-            //services.AddTransient<IRepository<Provider>, Repository<Provider>>();
+            services.AddTransient<IProductServices, ProductServices>();
+            services.AddTransient<IProviderServices, ProviderServices>();
+            services.AddTransient<IOrderServices, OrderServices>();
+            services.AddTransient<ICustomerServices, CustomerServices>();
+
+            //services.AddSingleton<IRepository<Customer>, Repository<Customer>>();
+            //services.AddSingleton<IRepository<Delivery>, Repository<Delivery>>();
+            //services.AddSingleton<IRepository<Order>, Repository<Order>>();
+            //services.AddSingleton<IRepository<Product>, Repository<Product>>();
+            //services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
