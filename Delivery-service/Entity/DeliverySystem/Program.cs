@@ -4,6 +4,7 @@ using DeliverySystem.DataBase;
 using DeliverySystem.Data;
 using DeliverySystem.Repository;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
@@ -14,7 +15,7 @@ namespace DeliverySystem
         static void Main(string[] args)
         {
             var data = new DataContext();
-
+          
             var configuration = Initialize();
             var repository = new RepositoryProvider(configuration.GetConnectionString("DefaultConnection"));
             var provider = repository.GetProviderById(1);
