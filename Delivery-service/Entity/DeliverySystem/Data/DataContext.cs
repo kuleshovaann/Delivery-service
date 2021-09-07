@@ -12,6 +12,11 @@ namespace DeliverySystem.DAL.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
 
+        public DataContext()
+        {
+            Database.EnsureCreated();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer("Data Source=.; Integrated Security=True; Initial Catalog = DeliverySystem");

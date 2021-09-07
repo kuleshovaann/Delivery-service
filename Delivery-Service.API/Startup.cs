@@ -29,16 +29,19 @@ namespace Delivery_Service.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery_Service.API", Version = "v1" });
             });
 
+            services.AddTransient<DataContext>();
+            services.AddTransient<UnitOfWork>();
+
             services.AddTransient<IProductServices, ProductServices>();
             services.AddTransient<IProviderServices, ProviderServices>();
             services.AddTransient<IOrderServices, OrderServices>();
             services.AddTransient<ICustomerServices, CustomerServices>();
 
-            //services.AddSingleton<IRepository<Customer>, Repository<Customer>>();
-            //services.AddSingleton<IRepository<Delivery>, Repository<Delivery>>();
-            //services.AddSingleton<IRepository<Order>, Repository<Order>>();
-            //services.AddSingleton<IRepository<Product>, Repository<Product>>();
-            //services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
+            services.AddSingleton<IRepository<Customer>, Repository<Customer>>();
+            services.AddSingleton<IRepository<Delivery>, Repository<Delivery>>();
+            services.AddSingleton<IRepository<Order>, Repository<Order>>();
+            services.AddSingleton<IRepository<Product>, Repository<Product>>();
+            services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
