@@ -27,7 +27,7 @@ namespace DeliverySystem.DAL.Services
                 ProductСategory = ProductСategory.Food,
                 Price = 50.0,
                 Description = "Instant coffee",
-                Provider = provider1.Name,
+                Provider = provider1,
                 Count = 1000,
                 Weight = 200
             });
@@ -38,7 +38,7 @@ namespace DeliverySystem.DAL.Services
                 ProductСategory = ProductСategory.Food,
                 Price = 40.0,
                 Description = "Ceylon long leaf tea",
-                Provider = provider1.Name,
+                Provider = provider1,
                 Count = 1000,
                 Weight = 250
             });
@@ -49,7 +49,7 @@ namespace DeliverySystem.DAL.Services
                 ProductСategory = ProductСategory.Food,
                 Price = 40.0,
                 Description = "Green tea leave",
-                Provider = provider1.Name,
+                Provider = provider1,
                 Count = 1000,
                 Weight = 250
             });
@@ -60,7 +60,7 @@ namespace DeliverySystem.DAL.Services
                 ProductСategory = ProductСategory.Food,
                 Price = 45.0,
                 Description = "Organic cacao powder with milk",
-                Provider = provider1.Name,
+                Provider = provider1,
                 Count = 500,
                 Weight = 300
             });
@@ -74,22 +74,11 @@ namespace DeliverySystem.DAL.Services
 
             provider2.Products.Add(new Product()
             {
-                Name = "Coffee",
-                ProductСategory = ProductСategory.Food,
-                Price = 50.0,
-                Description = "Instant coffee",
-                Provider = provider2.Name,
-                Count = 1000,
-                Weight = 200
-            });
-
-            provider2.Products.Add(new Product()
-            {
                 Name = "Blouse",
                 ProductСategory = ProductСategory.Dress,
                 Price = 300.0,
                 Description = "Summer blouse made of natural fabric",
-                Provider = provider2.Name,
+                Provider = provider2,
                 Count = 5
             });
 
@@ -99,7 +88,7 @@ namespace DeliverySystem.DAL.Services
                 ProductСategory = ProductСategory.Dress,
                 Price = 550.0,
                 Description = "Fashion flared jeans",
-                Provider = provider2.Name,
+                Provider = provider2,
                 Count = 3
             });
 
@@ -109,7 +98,7 @@ namespace DeliverySystem.DAL.Services
                 ProductСategory = ProductСategory.Dress,
                 Price = 350.0,
                 Description = "Pastel T-shirt",
-                Provider = provider2.Name,
+                Provider = provider2,
                 Count = 15
             });
 

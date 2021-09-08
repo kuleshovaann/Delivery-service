@@ -9,7 +9,8 @@ namespace DeliverySystem.DAL.Models
         public ProductСategory ProductСategory { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
-        public string Provider { get; set; }
+        public Provider Provider { get; set; }
+        public int ProviderId { get; set; }
         public int Count { get; set; }
         public double Weight { get; set; }
     }

@@ -1,0 +1,28 @@
+﻿@model DeliverySystem.DAL.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Product</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.EditorFor(m => m.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Price)
+        @Html.EditorFor(m => m.Price)
+    </div>
+    <div>
+        <label asp-for="ProviderId"></label>
+        <select asp-for="ProviderId" asp-items="ViewBag.Providers"></select>
+    </div>
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+}
+

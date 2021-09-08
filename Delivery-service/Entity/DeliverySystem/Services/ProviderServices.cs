@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DeliverySystem.DAL.Data;
 using DeliverySystem.DAL.Models;
 using DeliverySystem.DAL.Contracts;
+using System.Linq;
 
 namespace DeliverySystem.DAL.Services
 {
@@ -17,7 +18,7 @@ namespace DeliverySystem.DAL.Services
 
         public IEnumerable<Provider> GetAllProviders()
         {
-            return _unitOfWork.Providers.GetAll();
+            return _unitOfWork.Providers.GetAll().Distinct();
         }
 
         public Provider GetProviderById(int id)
