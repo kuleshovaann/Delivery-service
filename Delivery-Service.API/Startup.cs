@@ -7,9 +7,9 @@ using Microsoft.OpenApi.Models;
 using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using DeliverySystem.DAL.Data;
-using Microsoft.EntityFrameworkCore;
 using DeliverySystem.DAL.Services;
 using Delivery_Service.API.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace Delivery_Service.API
 {
@@ -25,7 +25,11 @@ namespace Delivery_Service.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(NewExceptionFilter));
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery_Service.API", Version = "v1" });
@@ -46,6 +50,8 @@ namespace Delivery_Service.API
             services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
 
             services.AddScoped<RequestBodyActionFilter>();
+            services.AddScoped<NewExceptionFilter>();
+            services.AddScoped<ILogger, Logger<NewExceptionFilter>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

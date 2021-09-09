@@ -3,9 +3,11 @@ using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Delivery_Service.API.Filters;
+using System;
 
 namespace Delivery_Service.API.Controllers
 {
+    [ServiceFilter(typeof(NewExceptionFilter))]
     public class ProductMVCController : Controller
     {
         private readonly IProductServices _productServices;
@@ -21,9 +23,7 @@ namespace Delivery_Service.API.Controllers
         [ServiceFilter(typeof(RequestBodyActionFilter))]
         public IActionResult GetProducts()
         {
-            var products = _productServices.GetAllProducts();
-
-            return View(products);
+            return View();
         }
 
         [HttpGet]
