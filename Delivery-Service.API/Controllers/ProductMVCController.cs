@@ -2,6 +2,7 @@
 using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Delivery_Service.API.Filters;
 
 namespace Delivery_Service.API.Controllers
 {
@@ -17,6 +18,7 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(RequestBodyActionFilter))]
         public IActionResult GetProducts()
         {
             var products = _productServices.GetAllProducts();

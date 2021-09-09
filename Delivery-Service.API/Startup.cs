@@ -9,6 +9,7 @@ using DeliverySystem.DAL.Models;
 using DeliverySystem.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using DeliverySystem.DAL.Services;
+using Delivery_Service.API.Filters;
 
 namespace Delivery_Service.API
 {
@@ -43,6 +44,8 @@ namespace Delivery_Service.API
             services.AddSingleton<IRepository<Order>, Repository<Order>>();
             services.AddSingleton<IRepository<Product>, Repository<Product>>();
             services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
+
+            services.AddScoped<RequestBodyActionFilter>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
