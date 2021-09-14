@@ -12,7 +12,6 @@ namespace DeliverySystem.DAL.Services
         public DataCreator(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            CreateData();
         }
 
         public void CreateData()

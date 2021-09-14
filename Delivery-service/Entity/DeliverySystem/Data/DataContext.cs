@@ -11,7 +11,7 @@ namespace DeliverySystem.DAL.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
 
-        public DataContext()
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

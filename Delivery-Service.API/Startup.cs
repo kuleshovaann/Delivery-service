@@ -10,6 +10,8 @@ using DeliverySystem.DAL.Data;
 using DeliverySystem.DAL.Services;
 using Delivery_Service.API.Filters;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Delivery_Service.API
 {
@@ -23,7 +25,10 @@ namespace Delivery_Service.API
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
+            services.AddDbContext<DataContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc();
             services.AddControllers(options =>
             {
@@ -35,7 +40,7 @@ namespace Delivery_Service.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery_Service.API", Version = "v1" });
             });
 
-            services.AddTransient<DataContext>();
+            services.AddScoped<DataContext>();
             services.AddTransient<UnitOfWork>();
 
             services.AddTransient<IProductServices, ProductServices>();
@@ -43,11 +48,11 @@ namespace Delivery_Service.API
             services.AddTransient<IOrderServices, OrderServices>();
             services.AddTransient<ICustomerServices, CustomerServices>();
 
-            services.AddSingleton<IRepository<Customer>, Repository<Customer>>();
-            services.AddSingleton<IRepository<Delivery>, Repository<Delivery>>();
-            services.AddSingleton<IRepository<Order>, Repository<Order>>();
-            services.AddSingleton<IRepository<Product>, Repository<Product>>();
-            services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
+            services.AddTransient<IRepository<Customer>, Repository<Customer>>();
+            services.AddTransient<IRepository<Delivery>, Repository<Delivery>>();
+            services.AddTransient<IRepository<Order>, Repository<Order>>();
+            services.AddTransient<IRepository<Product>, Repository<Product>>();
+            services.AddTransient<IRepository<Provider>, Repository<Provider>>();
 
             services.AddScoped<RequestBodyActionFilter>();
             services.AddScoped<NewExceptionFilter>();
