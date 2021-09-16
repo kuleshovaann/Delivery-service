@@ -1,6 +1,7 @@
 ﻿using DeliveryService.Models;
 using DeliveryService.Contracts;
 using System;
+using System.Collections.Generic;
 
 namespace DeliveryService.Services
 {
@@ -57,6 +58,16 @@ namespace DeliveryService.Services
             Console.Clear();
 
             _serializator.SaveToFlieDataCompany(company);
+        }
+
+        public IEnumerable<Dish> GetMenu()
+        {
+            var menu = new List<Dish>();
+            menu.Add(new Dish() { Name = "Coffee", Price = 40.0, Composition = "Instant coffee", Weight = 90, Calories = 1 });
+            menu.Add(new Dish() { Name = "Black tea", Price = 30.0, Composition = "Ceylon long leaf tea", Weight = 200, Calories = 0 });
+            menu.Add(new Dish() { Name = "Green tea", Price = 30.0, Composition = "Green tea leaves", Weight = 200, Calories = 0 });
+
+            return menu;
         }
     }
 }
