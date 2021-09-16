@@ -18,7 +18,6 @@ namespace Delivery_Service.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

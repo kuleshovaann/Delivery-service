@@ -17,22 +17,5 @@ namespace Delivery_Service.API.Controllers
             return service.GetMenu();
         }
     }
-
-    //GET/menu
-    //GET/dishes/{id}
-    //POST/orders
-    //GET//orders/{id}
-    //DELETE/orders/{id}
-    //GET/companies
-    //GET/companies/{id}
-
-    //GET/orders
-    //GET/orders/{id}
-    //PUT/orders/{id}
-    //GET/customers
-    //GET/customers/{id}
-    //PUT/customers/{id}
-    //POST/customers
-    //DELETE/customers/{id}
 }
 
