@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using DeliverySystem.DAL.Data;
-using Microsoft.EntityFrameworkCore;
 using DeliverySystem.DAL.Services;
 
 namespace Delivery_Service.API

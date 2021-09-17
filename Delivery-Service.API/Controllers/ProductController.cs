@@ -28,22 +28,25 @@ namespace Delivery_Service.API.Controllers
             return _productServices.GetProductById(id);
         }
 
-        [HttpPost("{product}")]
-        public void CreateProduct(Product product)
+        [HttpPost]
+        public IActionResult CreateCustomer(Product product)
         {
             _productServices.CreateProduct(product);
+            return Ok();
         }
 
-        [HttpPut("{product}")]
-        public void EditProduct(Product product)
+        [HttpPut]
+        public IActionResult EditCustomer(Product product)
         {
             _productServices.EditProduct(product);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void DeleteProduct(int id)
+        public IActionResult DeleteCustomer(int id)
         {
             _productServices.DeleteProduct(id);
+            return Ok();
         }
     }
 }
