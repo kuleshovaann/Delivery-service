@@ -28,22 +28,25 @@ namespace Delivery_Service.API.Controllers
             return _orderServices.GetOrderById(id);
         }
 
-        [HttpPost("{order}")]
-        public void CreateOrder(Order order)
+        [HttpPost]
+        public IActionResult CreateOrder(Order order)
         {
             _orderServices.CreateOrder(order);
+            return Ok();
         }
 
-        [HttpPut("{order}")]
-        public void EditOrder(Order order)
+        [HttpPut]
+        public IActionResult EditOrder(Order order)
         {
             _orderServices.EditOrder(order);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void DeleteOrder(int id)
+        public IActionResult DeleteOrder(int id)
         {
             _orderServices.DeleteOrder(id);
+            return Ok();
         }
     }
 }

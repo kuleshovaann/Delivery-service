@@ -1,9 +1,7 @@
 using DeliverySystem.DAL.Data;
 using DeliverySystem.DAL.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-
 
 namespace Delivery_Service.API
 {
