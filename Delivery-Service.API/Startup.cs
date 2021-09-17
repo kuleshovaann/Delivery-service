@@ -4,6 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using DeliverySystem.DAL.Contracts;
+using DeliverySystem.DAL.Models;
+using DeliverySystem.DAL.Data;
+using Microsoft.EntityFrameworkCore;
+using DeliverySystem.DAL.Services;
 
 namespace Delivery_Service.API
 {
@@ -23,6 +28,20 @@ namespace Delivery_Service.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery_Service.API", Version = "v1" });
             });
+
+            services.AddTransient<DataContext>();
+            services.AddTransient<UnitOfWork>();
+
+            services.AddTransient<IProductServices, ProductServices>();
+            services.AddTransient<IProviderServices, ProviderServices>();
+            services.AddTransient<IOrderServices, OrderServices>();
+            services.AddTransient<ICustomerServices, CustomerServices>();
+
+            services.AddSingleton<IRepository<Customer>, Repository<Customer>>();
+            services.AddSingleton<IRepository<Delivery>, Repository<Delivery>>();
+            services.AddSingleton<IRepository<Order>, Repository<Order>>();
+            services.AddSingleton<IRepository<Product>, Repository<Product>>();
+            services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

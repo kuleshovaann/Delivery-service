@@ -1,11 +1,10 @@
 ﻿using System;
-using DeliverySystem.Enums;
+using DeliverySystem.DAL.Enums;
 
-namespace DeliverySystem.Models
+namespace DeliverySystem.DAL.Models
 {
-    public class Order
+    public class Order : BaseModel
     {
-        public int Id { get; set; }
         public Customer Customer { get; set; }
         public string Address { get; set; }
         public double FullPrice { get; set; }

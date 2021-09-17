@@ -1,19 +1,17 @@
 ﻿using System;
-using DeliverySystem.Models;
-using DeliverySystem.Enums;
-using DeliverySystem.DataBase;
+using DeliverySystem.DAL.Models;
+using DeliverySystem.DAL.Enums;
+using DeliverySystem.DAL.Data;
 
-namespace DeliverySystem.Services
+namespace DeliverySystem.DAL.Services
 {
     public class DataCreator
     {
-        private ProviderDataBase _providerDataBase { get; set; }
-        private ProductDataBase _productDataBase { get; set; }
+        private UnitOfWork _unitOfWork;
 
-        public DataCreator(ProviderDataBase providerDataBase, ProductDataBase productDataBase)
+        public DataCreator(UnitOfWork unitOfWork)
         {
-            _providerDataBase = providerDataBase;
-            _productDataBase = productDataBase;
+            _unitOfWork = unitOfWork;
             CreateData();
         }
 
@@ -67,12 +65,8 @@ namespace DeliverySystem.Services
                 Weight = 300
             });
 
-            _providerDataBase.Providers.Add(provider1);
 
-            foreach(var product in provider1.Products)
-            {
-                _productDataBase.Products.Add(product);
-            }
+            _unitOfWork.Providers.Create(provider1);
 
             var provider2 = new Provider();
             provider2.Name = "Dress for you";
@@ -119,12 +113,7 @@ namespace DeliverySystem.Services
                 Count = 15
             });
 
-            _providerDataBase.Providers.Add(provider2);
-
-            foreach (var product in provider2.Products)
-            {
-                _productDataBase.Products.Add(product);
-            }
+            _unitOfWork.Providers.Create(provider2);
         }
     }
 }

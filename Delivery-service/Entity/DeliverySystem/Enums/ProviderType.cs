@@ -1,4 +1,4 @@
-﻿namespace DeliverySystem.Enums
+﻿namespace DeliverySystem.DAL.Enums
 {
     public enum ProviderType
     {

@@ -1,11 +1,10 @@
 ﻿using System;
-using DeliverySystem.Enums;
+using DeliverySystem.DAL.Enums;
 
-namespace DeliverySystem.Models
+namespace DeliverySystem.DAL.Models
 {
-    public class Product
+    public class Product : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ProductСategory ProductСategory { get; set; }
         public double Price { get; set; }

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Delivery-service\Models\DeliveryService.BLL.csproj" />
+    <ProjectReference Include="..\Delivery-service\Entity\DeliverySystem\DeliverySystem.DAL.csproj" />
   </ItemGroup>
 
 </Project>

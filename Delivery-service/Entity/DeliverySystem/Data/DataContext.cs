@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DeliverySystem.Models;
+using DeliverySystem.DAL.Models;
 
-namespace DeliverySystem.Data
+namespace DeliverySystem.DAL.Data
 {
     public class DataContext : DbContext
     {

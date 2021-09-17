@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace DeliverySystem.Models
+namespace DeliverySystem.DAL.Models
 {
-    public class Delivery
+    public class Delivery : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int CostOfDelivery { get; set; }
     }
