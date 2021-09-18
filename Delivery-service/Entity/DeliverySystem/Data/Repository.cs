@@ -44,12 +44,9 @@ namespace DeliverySystem.DAL.Data
 
         public T Update(T item)
         {
-            var toUpdate = _dataContext.Set<T>().FirstOrDefault(u => u.Id == item.Id);
-            if (toUpdate != null)
-                toUpdate = item;
-            _dataContext.Update(toUpdate);
+            _dataContext.Update(item);
             _dataContext.SaveChanges();
-            return toUpdate;
+            return item;
         }
     }
 }

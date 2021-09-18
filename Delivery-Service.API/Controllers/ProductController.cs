@@ -6,7 +6,7 @@ using DeliverySystem.DAL.Models;
 namespace Delivery_Service.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly IProductServices _productServices;

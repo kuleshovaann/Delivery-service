@@ -1,10 +1,6 @@
 ﻿using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DeliverySystem.DAL.Data
 {

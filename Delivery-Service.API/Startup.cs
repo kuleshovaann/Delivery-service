@@ -22,6 +22,7 @@ namespace Delivery_Service.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -60,7 +61,16 @@ namespace Delivery_Service.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "mvcProductGet",
+                    pattern: "mvc/product",
+                    defaults: new { controller = "ProductMVC", action = "GetProducts" }
+                );
+                endpoints.MapControllerRoute(
+                    name: "mvcProduct",
+                    pattern: "mvc/product/{action}/{id?}",
+                    defaults: new { controller = "ProductMVC" }
+                );
             });
         }
     }

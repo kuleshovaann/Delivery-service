@@ -1,0 +1,35 @@
+﻿@model DeliverySystem.DAL.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Product</h1>
+<h2>Product @Model.Name</h2>
+@using (Html.BeginForm("Edit", "ProductMVC", FormMethod.Post))
+{
+<fieldset>
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        @Html.LabelFor(m => m.Name, "New name")
+        <br />
+        @Html.EditorFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Price, "New price")
+        <br />
+        @Html.EditorFor(m => m.Price)
+
+    </p>
+    <p>
+        <label asp-for="ProviderId"></label>
+        <select asp-for="ProviderId" asp-items="ViewBag.Providers"></select>
+
+    </p>
+    <p><input type="submit" value="Save" /></p>
+</fieldset>
+}
+
+
+
