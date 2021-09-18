@@ -25,10 +25,6 @@ namespace Delivery_Service.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddControllers(options =>
-            {
-                options.Filters.Add(typeof(NewExceptionFilter));
-            });
 
             services.AddSwaggerGen(c =>
             {

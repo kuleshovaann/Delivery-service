@@ -42,6 +42,7 @@ namespace Delivery_Service.API.Controllers
             return RedirectToAction("GetProducts");
         }
 
+        [HttpGet]
         public IActionResult Edit()
         {
             return View();
@@ -64,6 +65,7 @@ namespace Delivery_Service.API.Controllers
             return RedirectToAction("GetProducts");
         }
 
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             _productServices.DeleteProduct(id);
