@@ -7,6 +7,7 @@ using System;
 
 namespace Delivery_Service.API.Controllers
 {
+    [Route("mvc/product")]
     [ServiceFilter(typeof(NewExceptionFilter))]
     public class ProductMVCController : Controller
     {
@@ -28,7 +29,8 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        [Route("Create")]
+        public IActionResult Create()
         {
             ViewBag.Providers = new SelectList(_providerServices.GetAllProviders(), "Id", "Name");
 
@@ -36,6 +38,7 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpPost]
+        [Route("Create")]
         public IActionResult Create(Product product)
         {
             _productServices.CreateProduct(product);
@@ -43,13 +46,9 @@ namespace Delivery_Service.API.Controllers
             return RedirectToAction("GetProducts");
         }
 
-        public IActionResult Edit()
-        {
-            return View();
-        }
-
         [HttpGet]
-        public ActionResult Edit(int id)
+        [Route("Edit/{id}")]
+        public IActionResult Edit(int id)
         {
             Product product = _productServices.GetProductById(id);
             ViewBag.Providers = new SelectList(_providerServices.GetAllProviders(), "Id", "Name");
@@ -58,13 +57,16 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product)
+        [Route("Edit/{id}")]
+        public IActionResult Edit(Product product)
         {
             _productServices.EditProduct(product);
 
             return RedirectToAction("GetProducts");
         }
 
+        [HttpGet]
+        [Route("Delete/{id}")]
         public IActionResult Delete(int id)
         {
             _productServices.DeleteProduct(id);

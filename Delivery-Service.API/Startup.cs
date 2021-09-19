@@ -30,10 +30,6 @@ namespace Delivery_Service.API
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
-            services.AddControllers(options =>
-            {
-                options.Filters.Add(typeof(NewExceptionFilter));
-            });
 
             services.AddSwaggerGen(c =>
             {
@@ -77,12 +73,12 @@ namespace Delivery_Service.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "mvcProductGet",
+                    name: "default",
                     pattern: "mvc/product",
                     defaults: new { controller = "ProductMVC", action = "GetProducts" }
                 );
                 endpoints.MapControllerRoute(
-                    name: "mvcProduct",
+                    name: "mvcProductRoute",
                     pattern: "mvc/product/{action}/{id?}",
                     defaults: new { controller = "ProductMVC" }
                 );
