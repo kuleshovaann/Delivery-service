@@ -26,22 +26,25 @@ namespace Delivery_Service.API.Controllers
             return _customerServices.GetCustomerById(id);
         }
 
-        [HttpPost("{customer}")]
-        public void CreateCustomer(Customer customer)
+        [HttpPost]
+        public IActionResult CreateCustomer(Customer customer)
         {
             _customerServices.CreateCustomer(customer);
+            return Ok();
         }
 
-        [HttpPut("{customer}")]
-        public void EditCustomer(Customer customer)
+        [HttpPut]
+        public IActionResult EditCustomer(Customer customer)
         {
             _customerServices.EditCustomer(customer);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void DeleteCustomer(int id)
+        public IActionResult DeleteCustomer(int id)
         {
             _customerServices.DeleteCustomer(id);
+            return Ok();
         }
     }
 }
