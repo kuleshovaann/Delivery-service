@@ -2,9 +2,13 @@
 using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Delivery_Service.API.Filters;
+using System;
 
 namespace Delivery_Service.API.Controllers
 {
+    [Route("mvc/product")]
+    [ServiceFilter(typeof(NewExceptionFilter))]
     public class ProductMVCController : Controller
     {
         private readonly IProductServices _productServices;
@@ -17,15 +21,15 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(RequestBodyActionFilter))]
         public IActionResult GetProducts()
         {
-            var products = _productServices.GetAllProducts();
-
-            return View(products);
+            return View();
         }
 
         [HttpGet]
-        public ActionResult Create()
+        [Route("Create")]
+        public IActionResult Create()
         {
             ViewBag.Providers = new SelectList(_providerServices.GetAllProviders(), "Id", "Name");
 
@@ -33,6 +37,7 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpPost]
+        [Route("Create")]
         public IActionResult Create(Product product)
         {
             if (!ModelState.IsValid)
@@ -46,13 +51,8 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Edit(int id)
+        [Route("Edit/{id}")]
+        public IActionResult Edit(int id)
         {
             Product product = _productServices.GetProductById(id);
             ViewBag.Providers = new SelectList(_providerServices.GetAllProviders(), "Id", "Name");
@@ -61,14 +61,16 @@ namespace Delivery_Service.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product)
+        [Route("Edit/{id}")]
+        public IActionResult Edit(Product product)
         {
             _productServices.EditProduct(product);
 
             return RedirectToAction("GetProducts");
         }
-        
-        [HttpDelete]
+
+        [HttpGet]
+        [Route("Delete/{id}")]
         public IActionResult Delete(int id)
         {
             _productServices.DeleteProduct(id);
