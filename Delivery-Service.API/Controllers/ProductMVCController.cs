@@ -41,6 +41,11 @@ namespace Delivery_Service.API.Controllers
         [Route("Create")]
         public IActionResult Create(Product product)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("GetProducts");
+            }
+
             _productServices.CreateProduct(product);
 
             return RedirectToAction("GetProducts");

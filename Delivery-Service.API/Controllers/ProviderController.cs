@@ -28,22 +28,25 @@ namespace Delivery_Service.API.Controllers
             return _providerServices.GetProviderById(id);
         }
 
-        [HttpPost("{provider}")]
-        public void CreateProvider(Provider provider)
+        [HttpPost]
+        public IActionResult CreateProvider(Provider provider)
         {
             _providerServices.CreateProvider(provider);
+            return Ok();
         }
 
-        [HttpPut("{provider}")]
-        public void EditProvider(Provider provider)
+        [HttpPut]
+        public IActionResult EditProvider(Provider provider)
         {
             _providerServices.EditProvider(provider);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void DeleteProvider(int id)
+        public IActionResult DeleteProvider(int id)
         {
             _providerServices.DeleteProvider(id);
+            return Ok();
         }
     }
 }
