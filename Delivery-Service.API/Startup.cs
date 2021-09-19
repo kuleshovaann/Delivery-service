@@ -8,8 +8,6 @@ using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
 using DeliverySystem.DAL.Data;
 using DeliverySystem.DAL.Services;
-using Delivery_Service.API.Filters;
-using Microsoft.Extensions.Logging;
 
 namespace Delivery_Service.API
 {
@@ -25,7 +23,7 @@ namespace Delivery_Service.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery_Service.API", Version = "v1" });
@@ -44,10 +42,6 @@ namespace Delivery_Service.API
             services.AddSingleton<IRepository<Order>, Repository<Order>>();
             services.AddSingleton<IRepository<Product>, Repository<Product>>();
             services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
-
-            services.AddScoped<RequestBodyActionFilter>();
-            services.AddScoped<NewExceptionFilter>();
-            services.AddScoped<ILogger, Logger<NewExceptionFilter>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,12 +62,12 @@ namespace Delivery_Service.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: "mvcProductGet",
                     pattern: "mvc/product",
                     defaults: new { controller = "ProductMVC", action = "GetProducts" }
                 );
                 endpoints.MapControllerRoute(
-                    name: "mvcProductRoute",
+                    name: "mvcProduct",
                     pattern: "mvc/product/{action}/{id?}",
                     defaults: new { controller = "ProductMVC" }
                 );
