@@ -20,22 +20,17 @@ namespace Delivery_Service.API.Filters
 
         public void OnException(ExceptionContext context)
         {
-           // _logger.LogInformation(context.Exception.StackTrace);
-
             if (_webHostEnvironment.IsDevelopment())
             {
-                _logger.LogInformation($"Error - {context.Exception.Message} {context.Exception.StackTrace}");
+                _logger.LogError($"Error - {context.Exception.Message} {context.Exception.StackTrace}");
             }
 
             if (_webHostEnvironment.IsEnvironment("QA"))
             {
-                _logger.LogInformation($"Error - {context.Exception.Message}");
+                _logger.LogError($"Error - {context.Exception.Message}");
             }
 
             context.ExceptionHandled = true;
         }
-
-
-
     }
 }
