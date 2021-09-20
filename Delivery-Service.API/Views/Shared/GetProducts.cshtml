@@ -1,17 +1,29 @@
-﻿@inject DeliverySystem.DAL.Contracts.IProductServices model
+﻿@model IEnumerable<DeliverySystem.DAL.Models.Product>
 
 @{
-    ViewData["Title"] = "Get Products";
+    ViewData["Title"] = "GetProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Get Products</h1>
+<h1>GetProducts</h1>
 
 <p>
     <a asp-action="Create">Click here to create a new product</a>
 </p>
 
-@using Delivery_Service.API.HtmlHelpers
-
-@ListHtmlHelper.CreateList(model.GetAllProducts())
+<h1>Products</h1>
+<body>
+    <table>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id">Edit</a> /
+                    <a asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
 
