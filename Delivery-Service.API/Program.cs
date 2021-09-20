@@ -1,5 +1,3 @@
-using DeliverySystem.DAL.Data;
-using DeliverySystem.DAL.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
