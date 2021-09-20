@@ -22,6 +22,7 @@ namespace Delivery_Service.API.Controllers
 
         [HttpGet]
         [ServiceFilter(typeof(RequestBodyActionFilter))]
+        [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 120)]
         public IActionResult GetProducts()
         {
             return View();

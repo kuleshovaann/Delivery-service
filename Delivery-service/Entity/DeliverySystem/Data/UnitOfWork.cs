@@ -1,12 +1,14 @@
 ﻿using DeliverySystem.DAL.Contracts;
 using DeliverySystem.DAL.Models;
+using DeliverySystem.DAL.Services;
 using System;
+using System.Linq;
 
 namespace DeliverySystem.DAL.Data
 {
     public class UnitOfWork
     {
-        private DataContext dataContext;
+        private DataContext _dataContext;
         private IRepository<Customer> _customerRepository;
         private IRepository<Delivery> _deliveryRepository;
         private IRepository<Order> _orderRepository;
@@ -15,7 +17,13 @@ namespace DeliverySystem.DAL.Data
 
         public UnitOfWork(DataContext dataContext)
         {
-            this.dataContext = dataContext;
+            _dataContext = dataContext;
+            var creator = new DataCreator(this);
+
+            if (!_dataContext.Products.Any())
+            {
+                creator.CreateData();
+            }
         }
 
         public IRepository<Customer> Customers
@@ -23,7 +31,7 @@ namespace DeliverySystem.DAL.Data
             get
             {
                 if (_customerRepository == null)
-                    _customerRepository = new Repository<Customer>(dataContext);
+                    _customerRepository = new Repository<Customer>(_dataContext);
                 return _customerRepository;
             }
         }
@@ -33,7 +41,7 @@ namespace DeliverySystem.DAL.Data
             get
             {
                 if (_deliveryRepository == null)
-                    _deliveryRepository = new Repository<Delivery>(dataContext);
+                    _deliveryRepository = new Repository<Delivery>(_dataContext);
                 return _deliveryRepository;
             }
         }
@@ -43,7 +51,7 @@ namespace DeliverySystem.DAL.Data
             get
             {
                 if (_orderRepository == null)
-                    _orderRepository = new Repository<Order>(dataContext);
+                    _orderRepository = new Repository<Order>(_dataContext);
                 return _orderRepository;
             }
         }
@@ -53,7 +61,7 @@ namespace DeliverySystem.DAL.Data
             get
             {
                 if (_productRepository == null)
-                    _productRepository = new Repository<Product>(dataContext);
+                    _productRepository = new Repository<Product>(_dataContext);
                 return _productRepository;
             }
         }
@@ -63,14 +71,14 @@ namespace DeliverySystem.DAL.Data
             get
             {
                 if (_providerRepository == null)
-                    _providerRepository = new Repository<Provider>(dataContext);
+                    _providerRepository = new Repository<Provider>(_dataContext);
                 return _providerRepository;
             }
         }
 
         public void Save()
         {
-            dataContext.SaveChanges();
+            _dataContext.SaveChanges();
         }
     }
 }
