@@ -42,6 +42,10 @@ namespace Delivery_Service.API
             services.AddSingleton<IRepository<Order>, Repository<Order>>();
             services.AddSingleton<IRepository<Product>, Repository<Product>>();
             services.AddSingleton<IRepository<Provider>, Repository<Provider>>();
+            
+            services.AddScoped<RequestBodyActionFilter>();
+            services.AddScoped<NewExceptionFilter>();
+            services.AddScoped<ILogger, Logger<NewExceptionFilter>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
