@@ -9,10 +9,6 @@ namespace Delivery_Service.API
     {
         public static void Main(string[] args)
         {
-            var dataContext = new DataContext();
-            UnitOfWork unitOfWork = new UnitOfWork(dataContext);
-            var creator = new DataCreator(unitOfWork);
-
             CreateHostBuilder(args).Build().Run();
         }
 
